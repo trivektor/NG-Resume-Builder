@@ -1,0 +1,20 @@
+.navbar.navbar-default.navbar-fixed-top.navbar-inverse
+  .container
+    .navbar-header
+      = link_to root_path, class: 'navbar-brand' do
+        Resume
+        %span.text-success Builder
+
+    .navbar-collapse.collapse
+      - if user_signed_in?
+        %ul.nav.navbar-nav.navbar-right
+          %li.dropdown
+            %a.dropdown-toggle{data: {toggle: 'dropdown'}}
+              = gravatar_image_tag(current_user.email, class: 'img-circle', gravatar: {size: 25})
+              = current_user.email
+              %i.fa.fa-caret-down
+            %ul.dropdown-menu
+              %li
+                = link_to destroy_user_session_path, method: 'delete', remote: true do
+                  %i.fa.fa-power-off
+                  Logout
