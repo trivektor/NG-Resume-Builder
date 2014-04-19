@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'thin'
 gem 'quiet_assets'
+gem 'gravatar_image_tag'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
