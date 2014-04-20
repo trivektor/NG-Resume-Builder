@@ -1,13 +1,22 @@
 /*
- *= require bootstrap
+ *= require lumen
  *= require fontawesome/css/font-awesome
  *= require angular-loading-bar
  *= require messenger
  *= require messenger/build/css/messenger-theme-flat
  */
 
+$border-color: #ddd;
+
 body {
+  font-size: 18px;
+  font-weight: 200;
   padding-top: 80px;
+  background: #eee;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 100;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -16,6 +25,10 @@ body {
 
 .navbar {
   border-width: 0 0 1px;
+  border-bottom-color: $border-color;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, .04);
+  color: #333;
+  background: #fff;
 
   .dropdown-menu {
     min-width: 200px;
@@ -26,5 +39,55 @@ body {
     > li > a {
       color: #fff;
     }
+  }
+
+  .navbar-brand {
+    font-size: 1.3em;
+    color: inherit;
+  }
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #333;
+}
+
+.page-header {
+  border-bottom: 1px solid $border-color;
+}
+
+.resume-block {
+  border-radius: 0;
+  border: 1px solid $border-color;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, .08);
+  background: #fff;
+  padding: 15px 22px;
+  position: relative;
+
+  .title-wrapper {
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid $border-color;
+
+    .title {
+      font-size: 1.2em;
+      display: block;
+      padding-right: 40px;
+      margin-bottom: 0;
+    }
+
+    .settings {
+      color: #aaa;
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      padding: 5px 11px;
+      font-size: 1.1em;
+      border: 1px solid $border-color;
+    }
+  }
+
+  .description {
+    margin: 20px 0;
+    color: #aaa;
   }
 }

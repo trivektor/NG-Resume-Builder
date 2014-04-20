@@ -2,7 +2,9 @@ angular
   .module('app', [
     'ngRoute',
     'classy',
+    'truncate',
     'restangular',
+    'ui.bootstrap',
     'app.services'
   ])
   .config(function($locationProvider) {

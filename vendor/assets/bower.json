@@ -6,10 +6,12 @@
     "messenger": "latest",
     "lodash": "latest",
     "angular": "latest",
+    "angular-bootstrap": "latest",
     "angular-route": "latest",
     "angular-classy": "latest",
     "angular-loading-bar": "latest",
     "angular-moment": "latest",
+    "angular-truncate": "latest",
     "restangular": "latest"
   }
 }

@@ -7,7 +7,9 @@
 //= require angular
 //= require angular-route
 //= require angular-classy
+//= require angular-bootstrap
 //= require angular-loading-bar
+//= require angular-truncate/dist/angular-truncate
 //= require restangular
 //= require app/init
 //= require_directory ./app/services

@@ -1,12 +1,17 @@
 %h1.page-header.clearfix
-  %span.pull-left Resumes (0)
+  %span.pull-left Resumes
   %button.btn.btn-success.pull-right{ng: {click: 'createNew()'}}
     %i.fa.fa-file
     New Resume
 
-%ul.list-unstyled.ng-cloak
-  %li{ng: {repeat: 'resume in resumes'}}
-    %a{ng: {href: '/resumes/{{ resume.id }}/edit'}, target: '_self'} {{ resume.name }}
+.row
+  .col-lg-4{ng: {repeat: 'resume in resumes'}}
+    .resume-block
+      .title-wrapper
+        %span.settings
+          %i.fa.fa-gear
+        %a.title{ng: {href: '/resumes/{{ resume.id }}/edit'}, target: '_self'} {{ resume.name }}
+      .description {{ resume.description || 'No description found' }}
 
 .ng-cloak
   .alert.alert-warning{ng: {if: 'resumes.length === 0'}}
