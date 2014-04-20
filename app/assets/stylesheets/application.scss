@@ -59,6 +59,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 30px;
   border-radius: 0;
   border: 1px solid $border-color;
+  border-top-width: 2px;
   box-shadow: 0 4px 0 rgba(0, 0, 0, .08);
   background: #fff;
   padding: 15px 22px 22px;
@@ -95,4 +96,13 @@ h1, h2, h3, h4, h5, h6 {
 .form-control {
   border: 1px solid $border-color;
   box-shadow: none;
+}
+
+.modal-content {
+  border-radius: 0;
+  border: 0;
+}
+
+.modal-header {
+  background: #eee;
 }
