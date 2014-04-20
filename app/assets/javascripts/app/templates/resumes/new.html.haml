@@ -1,23 +1,21 @@
-%h1.page-header.clearfix
-  %span.pull-left New Resume
-  %a.btn.btn-info.pull-right{ng: {href: '/resumes'}}
-    %i.fa.fa-reply
-    Back to resume
+.modal-header
+  %button.close{type: 'button', ng: {click: '$dismiss()'}} &times;
+  %h3.modal-title New Resume
+.modal-body
+  %form{ng: {submit: 'create()'}}
 
-%form{ng: {submit: 'create()'}}
+    .form-group
+      %label.control-label
+        %abbr.text-danger{title: 'required'} *
+        Name
+      %input.form-control{type: 'text', placeholder: 'e.g. John\'s Resume', ng: {model: 'resume.name'}, required: true, autofocus: true, autocapitalize: 'on'}
 
-  .form-group
-    %label.control-label
-      %abbr.text-danger{title: 'required'} *
-      Name
-    %input.form-control{type: 'text', placeholder: 'e.g. John\'s Resume', ng: {model: 'name'}, required: true}
+    .form-group
+      %label.control-label
+        Description
+      %textarea.form-control{type: 'text', rows: 4, placeholder: 'Describe your resume', ng: {model: 'resume.description'}}
 
-  .form-group
-    %label.control-label
-      Description
-    %textarea.form-control{type: 'text', rows: 4, placeholder: 'Describe your resume', ng: {model: 'description'}}
-
-  .form-group
-    %button.btn.btn-success Submit
-    or
-    %a{ng: {href: '/resumes'}} cancel
+    .form-group
+      %button.btn.btn-success Submit
+      or
+      %a{ng: {href: '/resumes'}} cancel

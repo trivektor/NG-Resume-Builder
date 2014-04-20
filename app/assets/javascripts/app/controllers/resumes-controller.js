@@ -1,40 +1,54 @@
 angular.module('app').classy.controller({
   name: 'ResumesController',
 
-  inject: ['$scope', '$location', 'Resume'],
+  inject: ['$scope', '$location', '$modal', 'Resume'],
 
   init: function() {
-    this.$scope.resumes = [];
-    this.Resume.fetchAll().then(_.bind(function(response) {
-      angular.copy(response, this.$scope.resumes);
+    var $scope = this.$scope;
+
+    $scope.resumes = [];
+
+    this.Resume.fetchAll().then(function(response) {
+      angular.copy(response, $scope.resumes);
+    });
+
+    $scope.$on('resumeCreated', _.bind(function(event, resume) {
+      $scope.resumes.push(resume);
+      this.modalInstance.close();
     }, this));
   },
 
   createNew: function() {
-    this.$location.path('/resumes/new');
+    this.modalInstance = this.$modal.open({
+      templateUrl: '/assets/app/templates/resumes/new.html',
+      controller: 'NewResumeController'
+    });
   }
 });
 
 angular.module('app').classy.controller({
   name: 'NewResumeController',
 
-  inject: ['$scope', '$location', '$timeout', 'Resume'],
+  inject: ['$scope', '$rootScope', 'Resume'],
 
   init: function() {
     this.resume = this.Resume.createInstance();
+    this.$scope.resume = {};
   },
 
   create: function() {
-    var r = this.resume.set(_.pick(this.$scope, 'name', 'description'));
+    var $scope = this.$scope;
+    var $rootScope = this.$rootScope;
 
-    r.save().then(_.bind(function(response) {
-      Messenger().post('Resume created');
+    var r = this.resume.set($scope.resume);
 
-      this.$timeout(_.bind(function() {
-        this.$location.path('/resumes');
-      }, this), 1000);
-
-    }, this));
+    r.save().then(function(response) {
+      Messenger().post({
+        message: 'Resume created',
+        hideAfter: 1
+      });
+      $rootScope.$broadcast('resumeCreated', response);
+    });
   }
 });
 
