@@ -16,6 +16,12 @@ angular.module('app').classy.controller({
       $scope.resumes.push(resume);
       this.modalInstance.close();
     }, this));
+
+    $scope.$on('resumeDeleted', function(event, resume) {
+      _.remove($scope.resumes, function(r) {
+        return r.id === resume.id;
+      });
+    });
   },
 
   createNew: function() {
@@ -45,10 +51,34 @@ angular.module('app').classy.controller({
     r.save().then(function(response) {
       Messenger().post({
         message: 'Resume created',
-        hideAfter: 1
+        hideAfter: 2
       });
       $rootScope.$broadcast('resumeCreated', response);
     });
+  }
+});
+
+angular.module('app').classy.controller({
+  name: 'ResumeController',
+
+  inject: ['$scope', '$rootScope', 'Resume'],
+
+  delete: function() {
+    if (confirm('Are you sure?')) {
+      var $rootScope = this.$rootScope;
+      var $scope = this.$scope;
+
+      var resume = this.Resume.createInstance();
+      resume.set({id: $scope.resume.id});
+
+      resume.delete().then(function() {
+        Messenger().post({
+          message: 'Resume deleted',
+          hideAfter: 2
+        });
+        $rootScope.$broadcast('resumeDeleted', $scope.resume);
+      });
+    }
   }
 });
 

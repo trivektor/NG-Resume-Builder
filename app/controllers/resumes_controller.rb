@@ -24,6 +24,17 @@ class ResumesController < ApplicationController
     end
   end
 
+  def destroy
+    respond_to do |format|
+      format.json do
+        resume = Resume.find(params[:id])
+        if resume.destroy
+          head :ok
+        end
+      end
+    end
+  end
+
   private
 
   def resume_params

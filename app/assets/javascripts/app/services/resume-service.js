@@ -23,6 +23,10 @@ angular.module('app.services').service('Resume', function(Restangular) {
     return this;
   }
 
+  Resume.prototype.delete = function() {
+    return Restangular.one('resumes', this.attributes.id).remove();
+  }
+
   Resume.createInstance = function() {
     return new Resume;
   }

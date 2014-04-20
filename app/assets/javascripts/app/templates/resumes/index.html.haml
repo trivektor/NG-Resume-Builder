@@ -5,23 +5,15 @@
     New Resume
 
 .row
-  .col-lg-4{ng: {repeat: 'resume in resumes'}}
+  .col-lg-4{ng: {repeat: 'resume in resumes', controller: 'ResumeController'}}
     .resume-block
       .title-wrapper
-        .settings.dropdown
-          %span.dropdown-toggle
-            %i.fa.fa-gear
-          %ul.dropdown-menu
-            %li
-              %a
-                %i.fa.fa-exclamation-triangle
-                Deactivate
-            %li
-              %a
-                %i.fa.fa-trash-o
-                Delete
         %a.title{ng: {href: '/resumes/{{ resume.id }}/edit'}, target: '_self'} {{ resume.name }}
       .description {{ resume.description || 'No description found' }}
+      %button.btn.btn-danger{ng: {click: 'delete()'}}
+        %i.fa.fa-trash-o
+        &nbsp;
+        Delete
 
 .ng-cloak
   .alert.alert-warning{ng: {if: 'resumes.length === 0'}}
