@@ -3,7 +3,10 @@
 
 asset 'bootstrap'
 asset 'fontawesome'
+asset 'messenger'
+asset 'lodash'
 asset 'angular'
 asset 'angular-route'
 asset 'angular-classy'
 asset 'angular-loading-bar'
+asset 'restangular'

@@ -1,7 +1,7 @@
 angular.module('app').classy.controller({
   name: 'ResumesController',
 
-  inject: ['$scope', '$location'],
+  inject: ['$scope', '$location', 'Resume'],
 
   init: function() {
 
@@ -15,10 +15,23 @@ angular.module('app').classy.controller({
 angular.module('app').classy.controller({
   name: 'NewResumeController',
 
-  inject: ['$scope', '$location'],
+  inject: ['$scope', '$location', '$timeout', 'Resume'],
+
+  init: function() {
+    this.resume = this.Resume.createInstance();
+  },
 
   create: function() {
+    var r = this.resume.set(_.pick(this.$scope, 'name', 'description'));
 
+    r.save().then(_.bind(function(response) {
+      Messenger().post('Resume created');
+
+      this.$timeout(_.bind(function() {
+        this.$location.path('/resumes');
+      }, this), 1000);
+
+    }, this));
   }
 });
 

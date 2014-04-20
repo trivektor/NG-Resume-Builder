@@ -10,12 +10,12 @@
     %label.control-label
       %abbr.text-danger{title: 'required'} *
       Name
-    %input.form-control{type: 'text', placeholder: 'e.g. John\'s Resume'}
+    %input.form-control{type: 'text', placeholder: 'e.g. John\'s Resume', ng: {model: 'name'}, required: true}
 
   .form-group
     %label.control-label
       Description
-    %textarea.form-control{type: 'text', rows: 4, placeholder: 'Describe your resume'}
+    %textarea.form-control{type: 'text', rows: 4, placeholder: 'Describe your resume', ng: {model: 'description'}}
 
   .form-group
     %button.btn.btn-success Submit

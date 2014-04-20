@@ -3,9 +3,12 @@
   "dependencies": {
     "bootstrap": "latest",
     "fontawesome": "latest",
+    "messenger": "latest",
+    "lodash": "latest",
     "angular": "latest",
     "angular-route": "latest",
     "angular-classy": "latest",
-    "angular-loading-bar": "latest"
+    "angular-loading-bar": "latest",
+    "restangular": "latest"
   }
 }
