@@ -4,7 +4,10 @@ angular.module('app').classy.controller({
   inject: ['$scope', '$location', 'Resume'],
 
   init: function() {
-
+    this.$scope.resumes = [];
+    this.Resume.fetchAll().then(_.bind(function(response) {
+      angular.copy(response, this.$scope.resumes);
+    }, this));
   },
 
   createNew: function() {
@@ -35,6 +38,12 @@ angular.module('app').classy.controller({
   }
 });
 
+angular.module('app').classy.controller({
+  name: 'EditResumeController',
+
+  inject: ['$scope', '$location', 'Resume']
+})
+
 angular.module('app').config(function ($routeProvider) {
 
   $routeProvider
@@ -45,6 +54,10 @@ angular.module('app').config(function ($routeProvider) {
     .when('/resumes/new', {
       controller: 'NewResumeController',
       templateUrl: '/assets/app/templates/resumes/new.html'
+    })
+    .when('/resumes/:id/edit', {
+      controller: 'EditResumeController',
+      templateUrl: '/assets/app/templates/resumes/edit.html'
     });
 
 });

@@ -9,3 +9,22 @@
 body {
   padding-top: 80px;
 }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.navbar {
+  border-width: 0 0 1px;
+
+  .dropdown-menu {
+    min-width: 200px;
+    border: 0;
+    background: #111;
+    color: #fff;
+
+    > li > a {
+      color: #fff;
+    }
+  }
+}

@@ -1,6 +1,12 @@
 class ResumesController < ApplicationController
 
   def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: current_user.resumes
+      end
+    end
   end
 
   def create

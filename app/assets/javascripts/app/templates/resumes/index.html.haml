@@ -3,3 +3,11 @@
   %button.btn.btn-success.pull-right{ng: {click: 'createNew()'}}
     %i.fa.fa-file
     New Resume
+
+%ul.list-unstyled.ng-cloak
+  %li{ng: {repeat: 'resume in resumes'}}
+    %a{ng: {href: '/resumes/{{ resume.id }}/edit'}, target: '_self'} {{ resume.name }}
+
+.ng-cloak
+  .alert.alert-warning{ng: {if: 'resumes.length === 0'}}
+    You don't have any resume yet.

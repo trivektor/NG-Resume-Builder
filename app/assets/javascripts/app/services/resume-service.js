@@ -27,6 +27,10 @@ angular.module('app.services').service('Resume', function(Restangular) {
     return new Resume;
   }
 
+  Resume.fetchAll = function() {
+    return Restangular.all('resumes').getList();
+  }
+
   return Resume;
 
 });

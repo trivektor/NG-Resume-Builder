@@ -9,6 +9,7 @@
     "angular-route": "latest",
     "angular-classy": "latest",
     "angular-loading-bar": "latest",
+    "angular-moment": "latest",
     "restangular": "latest"
   }
 }
