@@ -24,13 +24,13 @@ gem 'bower-rails'
 gem 'ngmin-rails'
 gem 'haml'
 gem 'haml-rails'
+gem 'quiet_assets'
+gem 'gravatar_image_tag'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'thin'
-gem 'quiet_assets'
-gem 'gravatar_image_tag'
 gem 'friendly_id', '~> 5.0.3'
 
 group :doc do

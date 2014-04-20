@@ -4,6 +4,8 @@
     "bootstrap": "latest",
     "fontawesome": "latest",
     "angular": "latest",
-    "angular-route": "latest"
+    "angular-route": "latest",
+    "angular-classy": "latest",
+    "angular-loading-bar": "latest"
   }
 }

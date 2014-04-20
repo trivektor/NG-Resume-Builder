@@ -1,5 +1,9 @@
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap/dist/js/bootstrap
+//= require bootstrap
 //= require angular
 //= require angular-route
+//= require angular-classy
+//= require angular-loading-bar
+//= require app/init
+//= require_directory ./app/controllers
