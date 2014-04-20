@@ -1,7 +1,7 @@
 .navbar.navbar-default.navbar-fixed-top.navbar-inverse
   .container
     .navbar-header
-      = link_to root_path, class: 'navbar-brand' do
+      = link_to root_path, class: 'navbar-brand', target: '_self' do
         Resume
         %span.text-success Builder
 
@@ -15,6 +15,6 @@
               %i.fa.fa-caret-down
             %ul.dropdown-menu
               %li
-                = link_to destroy_user_session_path, method: 'delete', remote: true do
+                = link_to destroy_user_session_path, method: 'delete', remote: true, target: '_self' do
                   %i.fa.fa-power-off
                   Logout

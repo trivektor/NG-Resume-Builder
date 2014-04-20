@@ -1,0 +1,23 @@
+%h1.page-header.clearfix
+  %span.pull-left New Resume
+  %a.btn.btn-info.pull-right{ng: {href: '/resumes'}}
+    %i.fa.fa-reply
+    Back to resume
+
+%form{ng: {submit: 'create()'}}
+
+  .form-group
+    %label.control-label
+      %abbr.text-danger{title: 'required'} *
+      Name
+    %input.form-control{type: 'text', placeholder: 'e.g. John\'s Resume'}
+
+  .form-group
+    %label.control-label
+      Description
+    %textarea.form-control{type: 'text', rows: 4, placeholder: 'Describe your resume'}
+
+  .form-group
+    %button.btn.btn-success Submit
+    or
+    %a{ng: {href: '/resumes'}} cancel
