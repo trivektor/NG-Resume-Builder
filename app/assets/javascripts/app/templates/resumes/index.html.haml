@@ -8,8 +8,18 @@
   .col-lg-4{ng: {repeat: 'resume in resumes'}}
     .resume-block
       .title-wrapper
-        %span.settings
-          %i.fa.fa-gear
+        .settings.dropdown
+          %span.dropdown-toggle
+            %i.fa.fa-gear
+          %ul.dropdown-menu
+            %li
+              %a
+                %i.fa.fa-exclamation-triangle
+                Deactivate
+            %li
+              %a
+                %i.fa.fa-trash-o
+                Delete
         %a.title{ng: {href: '/resumes/{{ resume.id }}/edit'}, target: '_self'} {{ resume.name }}
       .description {{ resume.description || 'No description found' }}
 
