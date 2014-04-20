@@ -31,6 +31,7 @@ gem 'devise'
 gem 'thin'
 gem 'quiet_assets'
 gem 'gravatar_image_tag'
+gem 'friendly_id', '~> 5.0.3'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

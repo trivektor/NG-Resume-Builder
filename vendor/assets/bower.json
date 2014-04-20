@@ -2,6 +2,8 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "bootstrap": "latest",
-    "fontawesome": "latest"
+    "fontawesome": "latest",
+    "angular": "latest",
+    "angular-route": "latest"
   }
 }
