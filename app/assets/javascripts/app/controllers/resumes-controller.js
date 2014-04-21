@@ -6,10 +6,8 @@ angular.module('app').classy.controller({
   init: function() {
     var $scope = this.$scope;
 
-    $scope.resumes = [];
-
     this.Resume.fetchAll().then(function(response) {
-      angular.copy(response, $scope.resumes);
+      $scope.resumes = response;
     });
 
     $scope.$on('resumeCreated', _.bind(function(event, resume) {
