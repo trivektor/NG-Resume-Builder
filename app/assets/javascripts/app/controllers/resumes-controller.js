@@ -89,10 +89,22 @@ angular.module('app').classy.controller({
   init: function() {
     this.$rootScope.pageTitle = 'Edit Resume';
     var $scope = this.$scope;
+    this.resume = this.Resume.createInstance();
 
-    this.Resume.findById(this.$routeParams.id).then(function(resume) {
-      $scope.resume = resume;
-    });
+    this.Resume.findById(this.$routeParams.id).then(_.bind(function(response) {
+      $scope.resume = response;
+      this.resume.set(response);
+    }, this));
+  },
+
+  createSection: function() {
+    this.resume.addSection(this.$scope.title).then(_.bind(function(response) {
+      Messenger().post({
+        message: 'Section added',
+        hideAfter: 2
+      });
+      this.resume.get('sections').push(response);
+    }, this));
   }
 })
 

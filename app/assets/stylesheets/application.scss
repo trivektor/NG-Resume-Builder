@@ -153,3 +153,12 @@ textarea {
     font-weight: 500;
   }
 }
+
+.well {
+  box-shadow: none;
+  background: #fff;
+}
+
+.well-dashed {
+  border: 1px dashed $border-color;
+}

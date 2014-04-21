@@ -9,20 +9,27 @@
 .row
   .col-lg-8
     .block
-      aaa
+      .well{ng: {if: 'resume.sections.length > 0'}}
+        %ul.list-unstyled
+          %li{ng: {repeat: 'section in resume.sections'}}
+            %h3 {{ section.title }}
+      .well.well-dashed
+        %form{ng: {submit: 'createSection()', show: 'showSectionForm'}}
+          .form-group
+            %label.control-label.sr-only Title
+            %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'title'}}
+
+          .form-group
+            %button.btn.btn-success.btn-sm
+              %i.fa.fa-check
+              Add
+            or
+            %a{ng: {click: 'showSectionForm = false'}} cancel
+        %button.btn.btn-primary.btn-xs{ng: {show: '!showSectionForm', click: 'showSectionForm = !showSectionForm'}}
+          %i.fa.fa-plus
+          Add Section
   .col-lg-4
     %form{ng: {submit: 'update()'}, class: 'resume-block'}
-
       .form-group
-        %label.control-label
-          %abbr.text-danger{title: 'required'} *
-          Name
-        %input.form-control{type: 'text', placeholder: 'e.g. John\'s Resume', ng: {model: 'name'}, required: true}
-
-      .form-group
-        %label.control-label
-          Description
-        %textarea.form-control{type: 'text', rows: 4, placeholder: 'Describe your resume', ng: {model: 'description'}}
-
-      .form-group
-        %button.btn.btn-success Update
+        %label.control-label.sr-only Description
+        %textarea.form-control{type: 'text', rows: 4, placeholder: 'Describe your resume', ng: {model: 'resume.description'}}

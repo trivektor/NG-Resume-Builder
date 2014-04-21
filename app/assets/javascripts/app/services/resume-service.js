@@ -23,8 +23,20 @@ angular.module('app.services').service('Resume', function(Restangular) {
     return this;
   }
 
+  Resume.prototype.get = function(attr) {
+    return this.attributes[attr];
+  }
+
   Resume.prototype.delete = function() {
     return Restangular.one('resumes', this.attributes.id).remove();
+  }
+
+  Resume.prototype.addSection = function(title) {
+    return Restangular.one('resumes', this.attributes.id).all('sections').post({title: title});
+  }
+
+  Resume.prototype.deleteSection = function(id) {
+
   }
 
   Resume.createInstance = function() {

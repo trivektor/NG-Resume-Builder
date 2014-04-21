@@ -1,7 +1,9 @@
 AngularResumeBuilder::Application.routes.draw do
   devise_for :users
   namespace :api do
-    resources :resumes
+    resources :resumes do
+      resources :sections
+    end
   end
   get '/dashboard' => 'dashboard#index'
   get '/resumes' => 'resumes#index'
