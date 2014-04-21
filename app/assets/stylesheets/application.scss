@@ -91,6 +91,16 @@ h1, h2, h3, h4, h5, h6 {
     outline: none;
     box-shadow: none
   }
+
+  .active {
+    &:focus {
+      outline: none
+    }
+  }
+
+  &:focus {
+    outline: none
+  }
 }
 
 .form-control {

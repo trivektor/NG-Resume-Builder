@@ -1,5 +1,8 @@
 %h1.page-header.clearfix
   %span.pull-left Edit Resume
+  %a.btn.btn-info.pull-right{ng: {href: '/resumes'}}
+    %i.fa.fa-reply
+    Back to Resumes
 
 %form{ng: {submit: 'update()'}, class: 'resume-block'}
 

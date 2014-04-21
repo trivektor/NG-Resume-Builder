@@ -1,5 +1,5 @@
 %h1.page-header.clearfix
-  %span.pull-left Resumes
+  %span.pull-left Your Resumes
   %button.btn.btn-success.pull-right{ng: {click: 'createNew()'}}
     %i.fa.fa-file
     New Resume
@@ -8,12 +8,19 @@
   .col-lg-4{ng: {repeat: 'resume in resumes', controller: 'ResumeController'}}
     .resume-block
       .title-wrapper
-        %a.title{ng: {href: '/resumes/{{ resume.id }}/edit'}, target: '_self'} {{ resume.name }}
+        %a.title{ng: {href: '{{ resume.url }}'}, target: '_self'} {{ resume.name }}
+
       .description {{ resume.description || 'No description found' }}
-      %button.btn.btn-danger{ng: {click: 'delete()'}}
+
+      %button.btn.btn-danger.btn-xs{ng: {click: 'delete()'}}
         %i.fa.fa-trash-o
         &nbsp;
         Delete
+
+      %a.btn.btn-info.btn-xs{ng: {href: '{{ resume.url }}'}}
+        %i.fa.fa-pencil
+        &nbsp;
+        Edit
 
 .ng-cloak
   .alert.alert-warning{ng: {if: 'resumes.length === 0'}}
