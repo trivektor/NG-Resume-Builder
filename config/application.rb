@@ -21,5 +21,6 @@ module AngularResumeBuilder
     # config.i18n.default_locale = :de
     config.generators.stylesheets = false
     config.generators.javascripts = false
+    config.generators.test_framework = false
   end
 end
