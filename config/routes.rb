@@ -5,6 +5,6 @@ AngularResumeBuilder::Application.routes.draw do
   end
   get '/dashboard' => 'dashboard#index'
   get '/resumes' => 'resumes#index'
-  get '/resumes/:id/edit' => 'resumes#edit'
+  get '/resumes/:id/edit' => 'resumes#index'
   root to: 'home#index'
 end
