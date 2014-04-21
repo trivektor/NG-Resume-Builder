@@ -31,6 +31,10 @@ angular.module('app.services').service('Resume', function(Restangular) {
     return new Resume;
   }
 
+  Resume.findById = function(id) {
+    return Restangular.one('resumes', id).get();
+  }
+
   Resume.fetchAll = function() {
     return Restangular.all('resumes').getList();
   }

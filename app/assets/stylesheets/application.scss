@@ -7,9 +7,10 @@
  */
 
 $border-color: #ddd;
+$general-font-size: 16px;
 
 body {
-  font-size: 18px;
+  font-size: $general-font-size;
   font-weight: 200;
   padding-top: 80px;
   background: #eee;
@@ -19,8 +20,22 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 100;
 }
 
+a {
+  cursor: pointer;
+}
+
+input[type=text],
+textarea {
+  font-size: inherit;
+  font-family: inherit;
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
+}
+
+:focus {
+  outline: none;
 }
 
 .navbar {
@@ -31,6 +46,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #fff;
 
   .dropdown-menu {
+    font-size: inherit;
     min-width: 200px;
     border: 0;
     background: #111;
@@ -55,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid $border-color;
 }
 
-.resume-block {
+@mixin block {
   margin-bottom: 30px;
   border-radius: 0;
   border: 1px solid $border-color;
@@ -64,6 +80,14 @@ h1, h2, h3, h4, h5, h6 {
   background: #fff;
   padding: 15px 22px 22px;
   position: relative;
+}
+
+.block {
+  @include block;
+}
+
+.resume-block {
+  @include block;
 
   .title-wrapper {
     margin-bottom: 20px;
@@ -87,6 +111,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn {
+  font-size: $general-font-size;
+  font-weight: 400;
+
+  .fa {
+    margin-right: 5px;
+  }
+
   &:active:focus {
     outline: none;
     box-shadow: none
@@ -106,6 +137,7 @@ h1, h2, h3, h4, h5, h6 {
 .form-control {
   border: 1px solid $border-color;
   box-shadow: none;
+  font-size: inherit;
 }
 
 .modal-content {
@@ -115,4 +147,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .modal-header {
   background: #eee;
+
+  .close {
+    font-size: 2em;
+    font-weight: 500;
+  }
 }

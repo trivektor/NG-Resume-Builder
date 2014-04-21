@@ -16,6 +16,7 @@ angular
   .config(function(RestangularProvider) {
     RestangularProvider.setRequestSuffix('.json');
     RestangularProvider.setMethodOverriders(["put", "patch"]);
+    RestangularProvider.setBaseUrl('/api');
     RestangularProvider.setErrorInterceptor(function(error) {
       if (!error.data.message) {
         Messenger().post({

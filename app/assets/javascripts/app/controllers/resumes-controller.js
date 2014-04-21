@@ -83,7 +83,15 @@ angular.module('app').classy.controller({
 angular.module('app').classy.controller({
   name: 'EditResumeController',
 
-  inject: ['$scope', '$location', 'Resume']
+  inject: ['$scope', '$location', '$routeParams', 'Resume'],
+
+  init: function() {
+    var $scope = this.$scope;
+
+    this.Resume.findById(this.$routeParams.id).then(function(resume) {
+      $scope.resume = resume;
+    });
+  }
 })
 
 angular.module('app').config(function ($routeProvider) {
