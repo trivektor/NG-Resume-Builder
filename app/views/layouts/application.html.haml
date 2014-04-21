@@ -1,7 +1,10 @@
 !!!
 %html{ng: {app: 'app'}}
   %head
-    %title AngularResumeBuilder
+    - if @title_for_layout
+      %title #{@title_for_layout} | Angular Resume Builder
+    - else
+      %title{ng: {bind_template: '{{ pageTitle }} | Angular Resume Builder'}}
     = stylesheet_link_tag    "application", media: "all"
     = csrf_meta_tags
   %body

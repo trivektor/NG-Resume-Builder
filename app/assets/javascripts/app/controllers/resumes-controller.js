@@ -1,10 +1,11 @@
 angular.module('app').classy.controller({
   name: 'ResumesController',
 
-  inject: ['$scope', '$location', '$modal', 'Resume'],
+  inject: ['$scope', '$rootScope', '$location', '$modal', 'Resume'],
 
   init: function() {
     var $scope = this.$scope;
+    this.$rootScope.pageTitle = 'Resumes';
 
     this.Resume.fetchAll().then(function(response) {
       $scope.resumes = response;
@@ -83,9 +84,10 @@ angular.module('app').classy.controller({
 angular.module('app').classy.controller({
   name: 'EditResumeController',
 
-  inject: ['$scope', '$location', '$routeParams', 'Resume'],
+  inject: ['$scope', '$rootScope', '$location', '$routeParams', 'Resume'],
 
   init: function() {
+    this.$rootScope.pageTitle = 'Edit Resume';
     var $scope = this.$scope;
 
     this.Resume.findById(this.$routeParams.id).then(function(resume) {
