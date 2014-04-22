@@ -122,7 +122,12 @@ angular.module('app').classy.controller({
     var resume = this.resume;
 
     $scope.$on('sections:sorted', function(event) {
-      resume.reorderSections($scope.resume.sections);
+      resume.reorderSections($scope.resume.sections).then(function() {
+        Messenger().post({
+          message: 'Sections reordered',
+          hideAfter: 1
+        })
+      });
     });
   },
 

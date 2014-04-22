@@ -30,6 +30,7 @@ class Api::SectionsController < ApplicationController
   def reorder
     respond_to do |format|
       format.json do
+        # TODO: performance refactor
         params[:ordered_sections].to_a.each_with_index do |section, index|
           section = Section.find(section[:id])
           section.update_attributes!(weight: index + 1)
