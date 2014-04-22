@@ -98,13 +98,31 @@ angular.module('app').classy.controller({
   },
 
   createSection: function() {
-    this.resume.addSection(this.$scope.title).then(_.bind(function(response) {
+    this.resume.addSection(this.$scope.section_title).then(_.bind(function(response) {
       Messenger().post({
         message: 'Section added',
         hideAfter: 2
       });
+
       this.resume.get('sections').push(response);
+      this.$scope.section_title = '';
     }, this));
+  },
+
+  deleteSection: function(section) {
+    if (confirm('Are you sure?')) {
+      this.resume.deleteSection(section).then(_.bind(function() {
+        Messenger().post({
+          message: 'Section deleted',
+          hideAfter: 2
+        });
+
+        var sections = this.resume.get('sections');
+        _.remove(sections, function(s) {
+          return s.id === section.id
+        })
+      }, this));
+    }
   }
 })
 

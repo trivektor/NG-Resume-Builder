@@ -16,6 +16,17 @@ class Api::SectionsController < ApplicationController
     end
   end
 
+  def destroy
+    respond_to do |format|
+      format.json do
+        section = Section.find(params[:id])
+        if section.destroy
+          head :ok
+        end
+      end
+    end
+  end
+
   private
 
   def section_params

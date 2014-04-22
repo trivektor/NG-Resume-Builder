@@ -9,15 +9,15 @@
 .row
   .col-lg-8
     .block
-      .well{ng: {if: 'resume.sections.length > 0'}}
-        %ul.list-unstyled
-          %li{ng: {repeat: 'section in resume.sections'}}
-            %h3 {{ section.title }}
+      %section.well.well-sm{ng: {if: 'resume.sections.length', repeat: 'section in resume.sections'}}
+        .clearfix
+          .lead.pull-left{contenteditable: true} {{ section.title }}
+          %i.fa.fa-trash-o.pull-right{ng: {click: 'deleteSection(section)'}}
       .well.well-dashed
         %form{ng: {submit: 'createSection()', show: 'showSectionForm'}}
           .form-group
             %label.control-label.sr-only Title
-            %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'title'}}
+            %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'section_title'}}
 
           .form-group
             %button.btn.btn-success.btn-sm

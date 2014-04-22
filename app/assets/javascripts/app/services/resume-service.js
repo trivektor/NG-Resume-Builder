@@ -35,8 +35,8 @@ angular.module('app.services').service('Resume', function(Restangular) {
     return Restangular.one('resumes', this.attributes.id).all('sections').post({title: title});
   }
 
-  Resume.prototype.deleteSection = function(id) {
-
+  Resume.prototype.deleteSection = function(section) {
+    return Restangular.one('resumes', this.attributes.id).one('sections', section.id).remove();
   }
 
   Resume.createInstance = function() {
