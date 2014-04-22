@@ -3,7 +3,7 @@ class CreateSections < ActiveRecord::Migration
     create_table :sections do |t|
       t.references :resume
       t.string :title
-      t.string :weight
+      t.integer :weight
       t.timestamps
     end
   end
