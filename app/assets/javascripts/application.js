@@ -1,5 +1,9 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/ui/jquery.ui.core
+//= require jquery-ui/ui/jquery.ui.widget
+//= require jquery-ui/ui/jquery.ui.mouse
+//= require jquery-ui/ui/jquery.ui.sortable
 //= require bootstrap
 //= require lodash
 //= require messenger
@@ -9,6 +13,7 @@
 //= require angular-classy
 //= require angular-bootstrap
 //= require angular-loading-bar
+//= require angular-ui-sortable
 //= require angular-truncate/dist/angular-truncate
 //= require restangular
 //= require app/init

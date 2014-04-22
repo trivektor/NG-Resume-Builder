@@ -1,7 +1,7 @@
 class Resume < ActiveRecord::Base
 
   belongs_to :user
-  has_many :sections, dependent: :destroy
+  has_many :sections, dependent: :destroy, order: 'weight asc'
 
   validates_presence_of :name
   validates_uniqueness_of :name

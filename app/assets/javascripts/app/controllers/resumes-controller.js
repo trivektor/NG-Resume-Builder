@@ -91,10 +91,39 @@ angular.module('app').classy.controller({
     var $scope = this.$scope;
     this.resume = this.Resume.createInstance();
 
+    this.fetchSections().enableSorting().registerEventHandlers();
+  },
+
+  fetchSections: function() {
+    var $scope = this.$scope;
+
     this.Resume.findById(this.$routeParams.id).then(_.bind(function(response) {
       $scope.resume = response;
       this.resume.set(response);
     }, this));
+
+    return this;
+  },
+
+  enableSorting: function() {
+    var $scope = this.$scope;
+
+    $scope.sortableOptions = {
+      update: function(event, ui) {
+        $scope.$emit('sections:sorted');
+      }
+    };
+
+    return this;
+  },
+
+  registerEventHandlers: function() {
+    var $scope = this.$scope;
+    var resume = this.resume;
+
+    $scope.$on('sections:sorted', function(event) {
+      resume.reorderSections($scope.resume.sections);
+    });
   },
 
   createSection: function() {

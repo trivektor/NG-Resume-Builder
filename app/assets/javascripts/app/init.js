@@ -5,6 +5,7 @@ angular
     'truncate',
     'restangular',
     'ui.bootstrap',
+    'ui.sortable',
     'app.services'
   ])
   .config(function($locationProvider) {

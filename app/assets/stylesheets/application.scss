@@ -1,5 +1,6 @@
 /*
  *= require lumen
+ *= require docs
  *= require fontawesome/css/font-awesome
  *= require angular-loading-bar
  *= require messenger
@@ -75,8 +76,7 @@ textarea {
   margin-bottom: 30px;
   border-radius: 0;
   border: 1px solid $border-color;
-  border-top-width: 2px;
-  box-shadow: 0 4px 0 rgba(0, 0, 0, .08);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .08);
   background: #fff;
   padding: 15px 22px 22px;
   position: relative;
@@ -113,9 +113,14 @@ textarea {
 .btn {
   font-size: $general-font-size;
   font-weight: 400;
+  text-transform: none;
 
   .fa {
     margin-right: 5px;
+
+    &:only-child {
+      margin-right: 0
+    }
   }
 
   &:active:focus {

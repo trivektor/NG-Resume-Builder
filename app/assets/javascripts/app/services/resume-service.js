@@ -28,15 +28,19 @@ angular.module('app.services').service('Resume', function(Restangular) {
   }
 
   Resume.prototype.delete = function() {
-    return Restangular.one('resumes', this.attributes.id).remove();
+    return Restangular.one('resumes', this.get('id')).remove();
   }
 
   Resume.prototype.addSection = function(title) {
-    return Restangular.one('resumes', this.attributes.id).all('sections').post({title: title});
+    return Restangular.one('resumes', this.get('id')).all('sections').post({title: title});
   }
 
   Resume.prototype.deleteSection = function(section) {
-    return Restangular.one('resumes', this.attributes.id).one('sections', section.id).remove();
+    return Restangular.one('resumes', this.get('id')).one('sections', section.id).remove();
+  }
+
+  Resume.prototype.reorderSections = function(orderedSections) {
+    return Restangular.one('resumes', this.get('id')).all('sections').customPOST({ordered_sections: orderedSections}, 'reorder');
   }
 
   Resume.createInstance = function() {

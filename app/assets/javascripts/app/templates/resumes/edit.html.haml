@@ -9,25 +9,28 @@
 .row
   .col-lg-8
     .block
-      %section.well.well-sm{ng: {if: 'resume.sections.length', repeat: 'section in resume.sections'}}
-        .clearfix
+      %ul.list-unstyled{ng: {if: 'resume.sections.length', model: 'resume.sections'}, ui: {sortable: 'sortableOptions'}}
+        %li.bs-callout.bs-callout-info.clearfix{ng: {repeat: 'section in resume.sections'}}
           .lead.pull-left{contenteditable: true} {{ section.title }}
-          %i.fa.fa-trash-o.pull-right{ng: {click: 'deleteSection(section)'}}
-      .well.well-dashed
-        %form{ng: {submit: 'createSection()', show: 'showSectionForm'}}
-          .form-group
-            %label.control-label.sr-only Title
-            %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'section_title'}}
+          .pull-right.btn.btn-danger.btn-xs{ng: {click: 'deleteSection(section)'}}
+            %i.fa.fa-trash-o
 
-          .form-group
-            %button.btn.btn-success.btn-sm
-              %i.fa.fa-check
-              Add
-            or
-            %a{ng: {click: 'showSectionForm = false'}} cancel
-        %button.btn.btn-primary.btn-xs{ng: {show: '!showSectionForm', click: 'showSectionForm = !showSectionForm'}}
-          %i.fa.fa-plus
-          Add Section
+      %form.bs-callout.bs-callout-success{ng: {submit: 'createSection()', show: 'showSectionForm'}}
+        .form-group
+          %label.control-label.sr-only Title
+          %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'section_title'}}
+
+        .form-group
+          %button.btn.btn-success.btn-sm
+            %i.fa.fa-check
+            Add
+          or
+          %a{ng: {click: 'showSectionForm = false'}} cancel
+
+      %button.btn.btn-primary.btn-xs{ng: {show: '!showSectionForm', click: 'showSectionForm = !showSectionForm'}}
+        %i.fa.fa-plus
+        Add Section
+
   .col-lg-4
     %form{ng: {submit: 'update()'}, class: 'resume-block'}
       .form-group

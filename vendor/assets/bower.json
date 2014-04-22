@@ -5,6 +5,7 @@
     "fontawesome": "latest",
     "messenger": "latest",
     "lodash": "latest",
+    "jquery-ui": "latest",
     "angular": "latest",
     "angular-bootstrap": "latest",
     "angular-route": "latest",
@@ -12,6 +13,7 @@
     "angular-loading-bar": "latest",
     "angular-moment": "latest",
     "angular-truncate": "latest",
+    "angular-ui-sortable": "latest",
     "restangular": "latest"
   }
 }

@@ -27,6 +27,18 @@ class Api::SectionsController < ApplicationController
     end
   end
 
+  def reorder
+    respond_to do |format|
+      format.json do
+        params[:ordered_sections].to_a.each_with_index do |section, index|
+          section = Section.find(section[:id])
+          section.update_attributes!(weight: index + 1)
+        end
+        head :ok
+      end
+    end
+  end
+
   private
 
   def section_params
