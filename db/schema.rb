@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140421072623) do
   create_table "sections", force: true do |t|
     t.integer  "resume_id"
     t.string   "title"
+    t.string   "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
