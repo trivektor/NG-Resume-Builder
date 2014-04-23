@@ -129,6 +129,8 @@ angular.module('app').classy.controller({
         })
       });
     });
+
+    return this;
   },
 
   createSection: function() {
@@ -157,6 +159,18 @@ angular.module('app').classy.controller({
         })
       }, this));
     }
+  },
+
+  updateResume: function() {
+    // TODO: refactor
+    var attrs = _.pick(this.$scope.resume, 'name', 'description');
+
+    this.resume.update(attrs).then(function() {
+      Messenger().post({
+        message: 'Resume saved',
+        hideAfter: 1
+      });
+    });
   }
 })
 

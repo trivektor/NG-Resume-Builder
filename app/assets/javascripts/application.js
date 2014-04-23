@@ -14,6 +14,7 @@
 //= require angular-bootstrap
 //= require angular-loading-bar
 //= require angular-ui-sortable
+//= require angular-contenteditable
 //= require angular-truncate/dist/angular-truncate
 //= require restangular
 //= require app/init

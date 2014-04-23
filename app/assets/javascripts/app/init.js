@@ -6,6 +6,7 @@ angular
     'restangular',
     'ui.bootstrap',
     'ui.sortable',
+    'contenteditable',
     'app.services'
   ])
   .config(function($locationProvider) {

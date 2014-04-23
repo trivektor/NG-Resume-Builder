@@ -34,6 +34,19 @@ class Api::ResumesController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      format.json do
+        resume = Resume.find(params[:id])
+        if resume.update_attributes(resume_params)
+          head :ok
+        else
+          render json: {message: resume.errors.full_messages}, status: :bad_request
+        end
+      end
+    end
+  end
+
   def destroy
     respond_to do |format|
       format.json do

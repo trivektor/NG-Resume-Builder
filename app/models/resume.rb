@@ -3,8 +3,7 @@ class Resume < ActiveRecord::Base
   belongs_to :user
   has_many :sections, dependent: :destroy, order: 'weight asc'
 
-  validates_presence_of :name
-  validates_uniqueness_of :name
+  validates :name, presence: true, uniqueness: true
 
   def as_json(options={})
     super(include: :sections).merge({
