@@ -28,7 +28,7 @@ class Api::ResumesController < ApplicationController
   def show
     respond_to do |format|
       format.json do
-        resume = Resume.includes(:sections).find(params[:id])
+        resume = Resume.includes(sections: :fields).find(params[:id])
         render json: resume
       end
     end

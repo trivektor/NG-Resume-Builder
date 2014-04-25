@@ -28,17 +28,17 @@
           %a{ng: {click: 'showSectionForm = false'}} cancel
 
     %ul.list-unstyled{ng: {if: 'resume.sections.length', model: 'resume.sections'}, ui: {sortable: 'sortableOptions'}}
-      %li.block.bs-callout.bs-callout-info{ng: {repeat: 'section in resume.sections', controller: 'SectionController'}}
+      %li.block.bs-callout.bs-callout-info{ng: {repeat: 'section in resume.sections', controller: 'SectionController', init: 'ngInit(resume, section)'}}
         .lead{contenteditable: true} {{ section.title }}
 
         %form{ng: {submit: 'createField()', show: 'showFieldForm'}}
           .form-group
             %label.control-label.sr-only Name
-            %input.form-control{type: 'text', placeholder: 'Name', ng: {model: 'field_name'}}
+            %input.form-control{type: 'text', placeholder: 'Name', ng: {model: 'name'}}
 
           .form-group
             %label.control-label.sr-only Value
-            %textarea.form-control{placeholder: 'Value', ng: {model: 'field_value'}}
+            %textarea.form-control{placeholder: 'Value', ng: {model: 'value'}}
 
           .form-group
             %button.btn.btn-success.btn-xs

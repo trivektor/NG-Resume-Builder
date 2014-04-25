@@ -6,8 +6,9 @@ class Resume < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   def as_json(options={})
-    super(include: :sections).merge({
-      url: "/resumes/#{id}/edit"
+    super.merge({
+      url: "/resumes/#{id}/edit",
+      sections: sections.as_json(include: :fields)
     })
   end
 
