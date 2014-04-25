@@ -8,11 +8,25 @@ angular.module('app').classy.controller({
   },
 
   createField: function() {
-    this.section.createField(_.pick(this.$scope, 'name', 'value')).then(function() {
+    var $scope = this.$scope;
+
+    this.section.createField(_.pick(this.$scope, 'name', 'value')).then(function(response) {
+
       Messenger().post({
         message: 'Field created',
         hideAfter: 1
       });
+
+      $scope.section.fields.push(response);
+      $scope.name = '';
+      $scope.value = '';
+
     });
+  },
+
+  removeField: function() {
+    if (confirm('Are you sure?')) {
+
+    }
   }
 });

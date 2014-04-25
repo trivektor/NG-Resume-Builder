@@ -10,7 +10,7 @@ class Api::FieldsController < ApplicationController
         field = section.fields.build(field_params)
 
         if field.save
-          render json: @field
+          render json: field
         else
           render json: {message: @field.errors.full_messages}
         end

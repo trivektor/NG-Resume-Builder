@@ -31,6 +31,12 @@
       %li.block.bs-callout.bs-callout-info{ng: {repeat: 'section in resume.sections', controller: 'SectionController', init: 'ngInit(resume, section)'}}
         .lead{contenteditable: true} {{ section.title }}
 
+        %ul.list-unstyled.well.well-sm{ng: {if: 'section.fields.length'}}
+          %li.clearfix{ng: {repeat: 'field in section.fields'}}
+            %b{ng: {if: 'field.name'}} {{ field.name }}
+            {{ field.value }}
+            %i.fa.fa-trash-o.pull-right{ng: {click: 'removeField(field)'}}
+
         %form{ng: {submit: 'createField()', show: 'showFieldForm'}}
           .form-group
             %label.control-label.sr-only Name
