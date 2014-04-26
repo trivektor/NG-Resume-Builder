@@ -15,6 +15,7 @@ body {
   font-weight: 200;
   padding-top: 80px;
   background: #eee;
+  -webkit-text-stroke: .6px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,6 +38,18 @@ textarea {
 
 :focus {
   outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
 }
 
 .navbar {
@@ -141,7 +154,8 @@ textarea {
 }
 
 .form-control {
-  border: 1px solid $border-color;
+  border-radius: 0;
+  border: 1px solid #bbb;
   box-shadow: none;
   font-size: inherit;
 }
@@ -163,6 +177,7 @@ textarea {
 .well {
   box-shadow: none;
   background: #fff;
+  border: 1px solid #bbb;
 }
 
 .well-dashed {
@@ -175,4 +190,28 @@ textarea {
 
 .movable {
   cursor: move;
+}
+
+#resume-name {
+  border: none;
+  background: none;
+  width: 100%;
+  padding: 0 5px;
+
+  &:focus {
+    background: #fff
+  }
+}
+
+.btn {
+  border-radius: 0;
+  font-weight: 200;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow: none;
+  border: none;
+
+  &:hover {
+    margin-top: 0
+  }
 }
