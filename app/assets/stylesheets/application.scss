@@ -88,6 +88,7 @@ textarea {
 
 .resume-block {
   @include block;
+  min-height: 200px;
 
   .title-wrapper {
     margin-bottom: 20px;

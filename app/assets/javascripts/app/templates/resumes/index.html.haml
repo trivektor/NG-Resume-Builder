@@ -10,7 +10,9 @@
       .title-wrapper
         %a.title{ng: {href: '{{ resume.url }}'}, target: '_self'} {{ resume.name }}
 
-      .description {{ resume.description || 'No description found' }}
+      .description{ng: {switch: 'resume.description || null'}}
+        %p{ng: {switch_when: 'null'}} No description found
+        %p{ng: {switch_default: 'null'}} {{ resume.description | characters:60 }}
 
       %button.btn.btn-danger.btn-xs{ng: {click: 'delete()'}}
         %i.fa.fa-trash-o
