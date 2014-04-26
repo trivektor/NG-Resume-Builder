@@ -28,7 +28,7 @@
           %a{ng: {click: 'showSectionForm = false'}} cancel
 
     %ul.list-unstyled{ng: {if: 'resume.sections.length', model: 'resume.sections'}, ui: {sortable: 'sortableOptions'}}
-      %li.block.bs-callout.bs-callout-info{ng: {repeat: 'section in resume.sections', controller: 'SectionController', init: 'ngInit(resume, section)'}}
+      %li.block.bs-callout.bs-callout-info.movable{ng: {repeat: 'section in resume.sections', controller: 'SectionController', init: 'ngInit(resume, section)'}}
         .lead{contenteditable: true} {{ section.title }}
 
         %ul.list-unstyled.well.well-sm{ng: {if: 'section.fields.length'}}

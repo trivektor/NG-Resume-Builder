@@ -167,3 +167,11 @@ textarea {
 .well-dashed {
   border: 1px dashed $border-color;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.movable {
+  cursor: move;
+}

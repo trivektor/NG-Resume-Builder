@@ -3,7 +3,7 @@ AngularResumeBuilder::Application.routes.draw do
   namespace :api do
     resources :resumes do
       resources :sections do
-        resources :fields, only: [:create]
+        resources :fields, only: [:create, :destroy]
         collection do
           post :reorder
         end

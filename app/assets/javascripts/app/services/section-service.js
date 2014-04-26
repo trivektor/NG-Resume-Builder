@@ -9,6 +9,10 @@ angular.module('app.services').service('Section', function(Restangular) {
     return Restangular.one('resumes', this.resume.id).one('sections', this.section.id).all('fields').post(attrs);
   }
 
+  Section.prototype.removeField = function(field) {
+    return Restangular.one('resumes', this.resume.id).one('sections', this.section.id).one('fields', field.id).remove();
+  }
+
   Section.createInstance = function(resume, section) {
     return new Section(resume, section);
   }
