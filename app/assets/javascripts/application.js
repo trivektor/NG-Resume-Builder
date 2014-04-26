@@ -10,6 +10,7 @@
 //= require messenger/build/js/messenger-theme-future
 //= require angular
 //= require angular-route
+//= require angular-animate
 //= require angular-classy
 //= require angular-bootstrap
 //= require angular-loading-bar

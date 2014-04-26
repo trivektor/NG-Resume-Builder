@@ -1,12 +1,14 @@
 angular
   .module('app', [
     'ngRoute',
+    'ngAnimate',
     'classy',
     'truncate',
     'restangular',
     'ui.bootstrap',
     'ui.sortable',
     'contenteditable',
+    'chieffancypants.loadingBar',
     'app.services'
   ])
   .config(function($locationProvider) {
