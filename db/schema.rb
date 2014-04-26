@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425064610) do
+ActiveRecord::Schema.define(version: 20140426234447) do
 
   create_table "fields", force: true do |t|
     t.integer  "section_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140425064610) do
   end
 
   create_table "resumes", force: true do |t|
+    t.string   "slug"
     t.integer  "user_id"
     t.string   "name"
     t.text     "description"
