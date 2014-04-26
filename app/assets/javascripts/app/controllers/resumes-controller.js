@@ -162,8 +162,9 @@ angular.module('app').classy.controller({
   },
 
   updateResume: function() {
-    // TODO: refactor
     var attrs = _.pick(this.$scope.resume, 'name', 'description');
+
+    if (!this.resume.hasChanged(attrs)) return;
 
     this.resume.update(attrs).then(function() {
       Messenger().post({

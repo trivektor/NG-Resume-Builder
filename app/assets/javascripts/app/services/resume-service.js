@@ -28,9 +28,20 @@ angular.module('app.services').service('Resume', function(Restangular) {
   }
 
   Resume.prototype.update = function(attrs) {
+    this.set(attrs);
     var resume = Restangular.one('resumes', this.get('id'));
     _.extend(resume, attrs);
     return resume.put();
+  }
+
+  Resume.prototype.hasChanged = function(newAttrs) {
+    for (var attr in newAttrs) {
+      if (this.get(attr) !== newAttrs[attr]) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   Resume.prototype.delete = function() {

@@ -1,8 +1,7 @@
 %h1.page-header
   .row
     .col-lg-8
-      %i.fa.fa-edit
-      %span{contenteditable: true, ng: {model: 'resume.name', blur: 'updateResume()'}} {{ resume.name }}
+      %input#resume-name{type: 'text', ng: {model: 'resume.name', blur: 'updateResume()'}}
     .col-lg-4.text-right
       %a.btn.btn-info{ng: {href: '/resumes'}}
         %i.fa.fa-reply
