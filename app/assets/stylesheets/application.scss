@@ -7,7 +7,7 @@
  *= require messenger/build/css/messenger-theme-flat
  */
 
-$border-color: #ddd;
+$border-color: #ccc;
 $general-font-size: 16px;
 
 body {
@@ -54,7 +54,7 @@ textarea {
 .navbar {
   border-width: 0 0 1px;
   border-bottom-color: $border-color;
-  box-shadow: 0 4px 0 rgba(0, 0, 0, .04);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .04);
   color: #333;
   background: #fff;
 
@@ -72,6 +72,7 @@ textarea {
 
   .navbar-brand {
     font-size: 1.3em;
+    font-weight: 500;
     color: inherit;
   }
 }
@@ -87,8 +88,8 @@ textarea {
 @mixin block {
   margin-bottom: 30px;
   border-radius: 0;
-  border: 1px solid $border-color;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, .08);
+  border: none;
+  box-shadow: 2px 3px 0 rgba(0, 0, 0, .04);
   background: #fff;
   padding: 15px 22px 22px;
   position: relative;
@@ -104,7 +105,8 @@ textarea {
 
   .title-wrapper {
     margin-bottom: 20px;
-    padding-bottom: 14px;
+    padding-bottom: 5px;
+    font-size: 1.3em;
     border-bottom: 1px solid $border-color;
 
     .title {
@@ -154,9 +156,14 @@ textarea {
 
 .form-control {
   border-radius: 0;
-  border: 1px solid #bbb;
   box-shadow: none;
   font-size: inherit;
+
+  &:active,
+  &:focus {
+    border-color: #28b62c;
+    box-shadow: none;
+  }
 }
 
 .modal-content {
@@ -175,8 +182,8 @@ textarea {
 
 .well {
   box-shadow: none;
-  background: #fff;
-  border: 1px solid #bbb;
+  background: #f7f7f7;
+  border: none;
 }
 
 .well-dashed {
@@ -193,15 +200,10 @@ textarea {
 
 .editable-field {
   border: none;
-  background: none;
   width: 100%;
-  padding: 0 5px;
-  border-bottom: 1px solid transparent;
-
-  &:focus {
-    background: #fff;
-    border-bottom: 2px dotted $border-color;
-  }
+  padding: 0;
+  background: none;
+  border-bottom: 1px dashed #bbb;
 }
 
 .btn {
@@ -217,5 +219,18 @@ textarea {
 
   + .btn {
     margin-left: 5px;
+  }
+}
+
+.movable.dragged {
+  height: auto !important;
+  border: 1px dashed #bbb;
+
+  .details, .field-form, .actions {
+    display: none !important;
+  }
+
+  .lead {
+    margin-bottom: 0;
   }
 }

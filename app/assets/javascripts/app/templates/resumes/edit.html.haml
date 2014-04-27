@@ -10,8 +10,8 @@
 .row
   %section.col-lg-8
     .block{ng: {controller: 'NewSectionController'}}
-      %button.btn.btn-primary{ng: {show: '!showSectionForm', click: 'showSectionForm = !showSectionForm'}}
-        %i.fa.fa-plus
+      %button.btn.btn-success{ng: {show: '!showSectionForm', click: 'showSectionForm = !showSectionForm'}}
+        %i.fa.fa-file-text
         Add Section
 
       %form{ng: {submit: 'create()', show: 'showSectionForm'}}
@@ -31,13 +31,13 @@
         .lead
           %input.editable-field{type: 'text', ng: {model: 'section.title', blur: 'update()'}}
 
-        .well.well-sm{ng: {if: 'section.fields.length'}}
+        .well.well-sm.details{ng: {if: 'section.fields.length'}}
           %section.clearfix{ng: {repeat: 'field in section.fields'}}
             %b{ng: {if: 'field.name'}} {{ field.name }}
             {{ field.value }}
             %i.fa.fa-trash-o.pull-right{ng: {click: 'removeField(field)'}}
 
-        %form{ng: {submit: 'createField()', show: 'showFieldForm'}}
+        %form.field-form{ng: {submit: 'createField()', show: 'showFieldForm'}}
           .form-group
             %label.control-label.sr-only Name
             %input.form-control{type: 'text', placeholder: 'Name', ng: {model: 'name'}}
@@ -53,7 +53,7 @@
             or
             %a{ng: {click: 'showFieldForm = false'}} cancel
 
-        %footer{ng: {hide: 'showFieldForm'}}
+        %footer.actions{ng: {hide: 'showFieldForm'}}
           %button.btn.btn-danger.btn-xs{ng: {click: 'delete(section)'}}
             %i.fa.fa-trash-o
             Remove Section
