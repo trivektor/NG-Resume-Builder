@@ -1,11 +1,12 @@
-angular.module('app.services').service('Resume', function(Restangular) {
+angular.module('app.services').service('Resume', function(Restangular, Section) {
 
-  var Resume = function() {
+  var Resume = function(resume) {
+    this.resume = resume;
     this.attributes = {};
   }
 
-  Resume.prototype.save = function(params) {
-    return Restangular.all('resumes').post(this.attributes);
+  Resume.create = function(attrs) {
+    return Restangular.all('resumes').post(attrs);
   }
 
   Resume.prototype.set = function() {
@@ -29,8 +30,8 @@ angular.module('app.services').service('Resume', function(Restangular) {
 
   Resume.prototype.update = function(attrs) {
     this.set(attrs);
-    var resume = Restangular.one('resumes', this.get('id'));
-    _.extend(resume, attrs);
+    var resume = Restangular.one('resumes', this.resume.id);
+    _.extend(attributes, attrs);
     return resume.put();
   }
 
@@ -45,23 +46,15 @@ angular.module('app.services').service('Resume', function(Restangular) {
   }
 
   Resume.prototype.delete = function() {
-    return Restangular.one('resumes', this.get('id')).remove();
-  }
-
-  Resume.prototype.addSection = function(title) {
-    return Restangular.one('resumes', this.get('id')).all('sections').post({title: title});
-  }
-
-  Resume.prototype.deleteSection = function(section) {
-    return Restangular.one('resumes', this.get('id')).one('sections', section.id).remove();
+    return Restangular.one('resumes', this.resume.id).remove();
   }
 
   Resume.prototype.reorderSections = function(orderedSections) {
     return Restangular.one('resumes', this.get('id')).all('sections').customPOST({ordered_sections: orderedSections}, 'reorder');
   }
 
-  Resume.createInstance = function() {
-    return new Resume;
+  Resume.createInstance = function(resume) {
+    return new Resume(resume);
   }
 
   Resume.findById = function(id) {

@@ -11,12 +11,12 @@ angular.module('app').classy.controller({
       $scope.resumes = response;
     });
 
-    $scope.$on('resumeCreated', _.bind(function(event, resume) {
+    $scope.$on('resume:created', _.bind(function(event, resume) {
       $scope.resumes.push(resume);
       this.modalInstance.close();
     }, this));
 
-    $scope.$on('resumeDeleted', function(event, resume) {
+    $scope.$on('resume:delete', function(event, resume) {
       _.remove($scope.resumes, function(r) {
         return r.id === resume.id;
       });
@@ -37,7 +37,6 @@ angular.module('app').classy.controller({
   inject: ['$scope', '$rootScope', 'Resume'],
 
   init: function() {
-    this.resume = this.Resume.createInstance();
     this.$scope.resume = {};
   },
 
@@ -45,14 +44,13 @@ angular.module('app').classy.controller({
     var $scope = this.$scope;
     var $rootScope = this.$rootScope;
 
-    var r = this.resume.set($scope.resume);
-
-    r.save().then(function(response) {
+    this.Resume.create(_.pick($scope.resume, 'name', 'description')).then(function(response) {
       Messenger().post({
         message: 'Resume created',
         hideAfter: 2
       });
-      $rootScope.$broadcast('resumeCreated', response);
+
+      $rootScope.$broadcast('resume:created', response);
     });
   }
 });
@@ -60,22 +58,20 @@ angular.module('app').classy.controller({
 angular.module('app').classy.controller({
   name: 'ResumeController',
 
-  inject: ['$scope', '$rootScope', 'Resume'],
+  inject: ['$scope', 'Resume'],
 
   delete: function() {
     if (confirm('Are you sure?')) {
-      var $rootScope = this.$rootScope;
       var $scope = this.$scope;
 
-      var resume = this.Resume.createInstance();
-      resume.set({id: $scope.resume.id});
+      var resume = this.Resume.createInstance($scope.resume);
 
       resume.delete().then(function() {
         Messenger().post({
           message: 'Resume deleted',
           hideAfter: 2
         });
-        $rootScope.$broadcast('resumeDeleted', $scope.resume);
+        $scope.$emit('resume:delete', $scope.resume);
       });
     }
   }
@@ -88,9 +84,6 @@ angular.module('app').classy.controller({
 
   init: function() {
     this.$rootScope.pageTitle = 'Edit Resume';
-    var $scope = this.$scope;
-    this.resume = this.Resume.createInstance();
-
     this.fetchSections().enableSorting().registerEventHandlers();
   },
 
@@ -99,6 +92,7 @@ angular.module('app').classy.controller({
 
     this.Resume.findById(this.$routeParams.id).then(_.bind(function(response) {
       $scope.resume = response;
+      this.resume = this.Resume.createInstance($scope.resume);
       this.resume.set(response);
     }, this));
 
@@ -130,35 +124,17 @@ angular.module('app').classy.controller({
       });
     });
 
-    return this;
-  },
+    $scope.$on('section:created', function(event, section) {
+      $scope.resume.sections.push(section);
+    });
 
-  createSection: function() {
-    this.resume.addSection(this.$scope.section_title).then(_.bind(function(response) {
-      Messenger().post({
-        message: 'Section added',
-        hideAfter: 2
+    $scope.$on('section:deleted', function(event, section) {
+      _.remove($scope.resume.sections, function(s) {
+        return section.id === s.id;
       });
+    });
 
-      this.resume.get('sections').push(response);
-      this.$scope.section_title = '';
-    }, this));
-  },
-
-  deleteSection: function(section) {
-    if (confirm('Are you sure?')) {
-      this.resume.deleteSection(section).then(_.bind(function() {
-        Messenger().post({
-          message: 'Section deleted',
-          hideAfter: 2
-        });
-
-        var sections = this.resume.get('sections');
-        _.remove(sections, function(s) {
-          return s.id === section.id
-        })
-      }, this));
-    }
+    return this;
   },
 
   updateResume: function() {
