@@ -87,6 +87,11 @@ angular.module('app').classy.controller({
     this.fetchSections().then(_.bind(function() {
       this.enableSorting().registerEventHandlers();
     }, this));
+
+    this.$scope.sections = {
+      sort: false,
+      add: false
+    }
   },
 
   fetchSections: function() {

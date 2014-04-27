@@ -9,12 +9,17 @@
 
 .row
   %section.col-lg-8
-    .block{ng: {controller: 'NewSectionController'}}
-      %button.btn.btn-success{ng: {show: '!showSectionForm', click: 'showSectionForm = !showSectionForm'}}
+    .block
+      %button.btn.btn-success{ng: {show: '!sections.add', click: 'sections.add = !sections.add; sections.sort = false'}}
         %i.fa.fa-file-text
         Add Section
+      %button.btn.btn-primary{ng: {show: '!sections.add', click: 'sections.sort = !sections.sort'}}
+        %i.fa.fa-refresh
+        %span{ng: {switch: 'sections.sort'}}
+          %span{ng: {switch_when: 'true'}} Finish Ordering
+          %span{ng: {switch_default: ''}} Reorder Sections
 
-      %form{ng: {submit: 'create()', show: 'showSectionForm'}}
+      %form{ng: {controller: 'NewSectionController', submit: 'create()', show: 'sections.add'}}
         .form-group
           %label.control-label.sr-only Title
           %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'title'}}
@@ -24,10 +29,10 @@
             %i.fa.fa-check
             Add
           or
-          %a{ng: {click: 'showSectionForm = false'}} cancel
+          %a{ng: {click: 'sections.add = false'}} cancel
 
     %section{ng: {if: 'resume.sections.length', model: 'resume.sections'}, ui: {sortable: 'sortableOptions'}}
-      %section.block.bs-callout.bs-callout-info.movable{ng: {repeat: 'section in resume.sections', controller: 'SectionController', init: 'ngInit(resume, section)'}}
+      %section.block{ng: {class: '{"sortable-active": sections.sort}', repeat: 'section in resume.sections', controller: 'SectionController', init: 'ngInit(resume, section)'}}
         .lead
           %input.editable-field{type: 'text', ng: {model: 'section.title', blur: 'update()'}}
 
