@@ -84,18 +84,18 @@ angular.module('app').classy.controller({
 
   init: function() {
     this.$rootScope.pageTitle = 'Edit Resume';
-    this.fetchSections().enableSorting().registerEventHandlers();
+    this.fetchSections().then(_.bind(function() {
+      this.enableSorting().registerEventHandlers();
+    }, this));
   },
 
   fetchSections: function() {
     var $scope = this.$scope;
 
-    this.Resume.findById(this.$routeParams.id).then(_.bind(function(response) {
+    return this.Resume.findById(this.$routeParams.id).then(_.bind(function(response) {
       $scope.resume = response;
       this.resume = this.Resume.createInstance($scope.resume);
     }, this));
-
-    return this;
   },
 
   enableSorting: function() {
@@ -112,16 +112,15 @@ angular.module('app').classy.controller({
 
   registerEventHandlers: function() {
     var $scope = this.$scope;
-    var resume = this.resume;
 
-    $scope.$on('sections:sorted', function(event) {
-      resume.reorderSections($scope.resume.sections).then(function() {
+    $scope.$on('sections:sorted', _.bind(function(event) {
+      this.resume.reorderSections($scope.resume.sections).then(function() {
         Messenger().post({
           message: 'Sections reordered',
           hideAfter: 1
         })
       });
-    });
+    }, this));
 
     $scope.$on('section:created', function(event, section) {
       $scope.resume.sections.push(section);
