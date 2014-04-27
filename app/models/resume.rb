@@ -9,7 +9,8 @@ class Resume < ActiveRecord::Base
 
   def as_json(options={})
     super.merge({
-      url: "/resumes/#{id}/edit",
+      url: "/resumes/#{slug}/edit",
+      live_url: "/resumes/#{slug}",
       sections: sections.as_json(include: :fields)
     })
   end
