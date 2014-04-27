@@ -39,5 +39,53 @@ angular.module('app').classy.controller({
         });
       });
     }
+  },
+
+  update: function() {
+    var attrs = _.pick(this.$scope.section, 'title');
+
+    if (!this.section.hasChanged(attrs)) return;
+
+    this.section.update(attrs).then(function() {
+      Messenger().post({
+        message: 'Section updated',
+        hideAfter: 2
+      });
+    });
+  },
+
+  delete: function(section) {
+    if (confirm('Are you sure?')) {
+      var $scope = this.$scope;
+
+      this.section.delete(section.id).then(function() {
+        Messenger().post({
+          message: 'Section deleted',
+          hideAfter: 2
+        });
+
+        $scope.$emit('section:deleted', section);
+      });
+    }
+  }
+});
+
+angular.module('app').classy.controller({
+  name: 'NewSectionController',
+
+  inject: ['$scope', 'Section'],
+
+  create: function() {
+    var $scope = this.$scope;
+    this.section = this.Section.createInstance($scope.resume);
+    this.section.save({title: $scope.title}).then(function(response) {
+      $scope.$emit('section:created', response);
+      $scope.title = '';
+
+      Messenger().post({
+        message: 'Section added',
+        hideAfter: 2
+      })
+    });
   }
 });

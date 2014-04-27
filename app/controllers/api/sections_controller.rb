@@ -16,6 +16,17 @@ class Api::SectionsController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      format.json do
+        section = Section.find(params[:id])
+        if section.update_attributes(section_params)
+          head :ok
+        end
+      end
+    end
+  end
+
   def destroy
     respond_to do |format|
       format.json do

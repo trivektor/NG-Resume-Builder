@@ -1,23 +1,23 @@
 %h1.page-header
   .row
     .col-lg-8
-      %input#resume-name{type: 'text', ng: {model: 'resume.name', blur: 'updateResume()'}}
+      %input#resume-name.editable-field{type: 'text', ng: {model: 'resume.name', blur: 'update()'}}
     .col-lg-4.text-right
-      %a.btn.btn-info{ng: {href: '/resumes'}}
-        %i.fa.fa-reply
-        Back to Resumes
+      %a.btn.btn-info{ng: {href: '{{ resume.live_url }}'}}
+        %i.fa.fa-external-link
+        View Resume
 
 .row
   .col-lg-8
-    .block
+    .block{ng: {controller: 'NewSectionController'}}
       %button.btn.btn-primary{ng: {show: '!showSectionForm', click: 'showSectionForm = !showSectionForm'}}
         %i.fa.fa-plus
         Add Section
 
-      %form{ng: {submit: 'createSection()', show: 'showSectionForm'}}
+      %form{ng: {submit: 'create()', show: 'showSectionForm'}}
         .form-group
           %label.control-label.sr-only Title
-          %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'section_title'}}
+          %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'title'}}
 
         .form-group
           %button.btn.btn-success.btn-sm
@@ -28,7 +28,8 @@
 
     %ul.list-unstyled{ng: {if: 'resume.sections.length', model: 'resume.sections'}, ui: {sortable: 'sortableOptions'}}
       %li.block.bs-callout.bs-callout-info.movable{ng: {repeat: 'section in resume.sections', controller: 'SectionController', init: 'ngInit(resume, section)'}}
-        .lead{contenteditable: true} {{ section.title }}
+        .lead
+          %input.editable-field{type: 'text', ng: {model: 'section.title', blur: 'update()'}}
 
         %ul.list-unstyled.well.well-sm{ng: {if: 'section.fields.length'}}
           %li.clearfix{ng: {repeat: 'field in section.fields'}}
@@ -53,7 +54,7 @@
             %a{ng: {click: 'showFieldForm = false'}} cancel
 
         %footer{ng: {hide: 'showFieldForm'}}
-          %button.btn.btn-danger.btn-xs{ng: {click: 'deleteSection(section)'}}
+          %button.btn.btn-danger.btn-xs{ng: {click: 'delete(section)'}}
             %i.fa.fa-trash-o
             Remove Section
           %button.btn.btn-info.btn-xs{ng: {click: 'showFieldForm = !showFieldForm'}}
@@ -61,7 +62,7 @@
             Add Fields
 
   .col-lg-4
-    %form{ng: {submit: 'update()'}, class: 'resume-block'}
+    %form{class: 'resume-block'}
       .form-group
         %label.control-label.sr-only Description
-        %textarea.form-control{type: 'text', rows: 4, placeholder: 'Describe your resume', ng: {model: 'resume.description', blur: 'updateResume()'}}
+        %textarea.form-control{type: 'text', rows: 4, placeholder: 'Describe your resume', ng: {model: 'resume.description', blur: 'update()'}}

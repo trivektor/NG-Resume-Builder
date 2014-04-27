@@ -93,7 +93,6 @@ angular.module('app').classy.controller({
     this.Resume.findById(this.$routeParams.id).then(_.bind(function(response) {
       $scope.resume = response;
       this.resume = this.Resume.createInstance($scope.resume);
-      this.resume.set(response);
     }, this));
 
     return this;
@@ -137,7 +136,7 @@ angular.module('app').classy.controller({
     return this;
   },
 
-  updateResume: function() {
+  update: function() {
     var attrs = _.pick(this.$scope.resume, 'name', 'description');
 
     if (!this.resume.hasChanged(attrs)) return;

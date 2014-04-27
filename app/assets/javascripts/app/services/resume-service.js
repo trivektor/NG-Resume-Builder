@@ -2,26 +2,11 @@ angular.module('app.services').service('Resume', function(Restangular, Section) 
 
   var Resume = function(resume) {
     this.resume = resume;
-    this.attributes = {};
+    this.attributes = _.extend({}, resume);
   }
 
   Resume.create = function(attrs) {
     return Restangular.all('resumes').post(attrs);
-  }
-
-  Resume.prototype.set = function() {
-    if (arguments.length === 1 && _.isObject(arguments[0])) {
-      var attrs = arguments[0];
-      for (var key in attrs) {
-        this.attributes[key] = attrs[key];
-      }
-    } else if (arguments.length === 2) {
-      this.attributes[arguments[0]] = this.attributes[arguments[1]];
-    } else {
-      throw 'Please use Resume.set(attr_key, attr_value) or Resume.set({attr_key: attr_value})';
-      return;
-    }
-    return this;
   }
 
   Resume.prototype.get = function(attr) {
@@ -29,15 +14,15 @@ angular.module('app.services').service('Resume', function(Restangular, Section) 
   }
 
   Resume.prototype.update = function(attrs) {
-    this.set(attrs);
+    _.extend(this.attributes, attrs);
     var resume = Restangular.one('resumes', this.resume.id);
-    _.extend(attributes, attrs);
+    _.extend(resume, attrs);
     return resume.put();
   }
 
   Resume.prototype.hasChanged = function(newAttrs) {
     for (var attr in newAttrs) {
-      if (this.get(attr) !== newAttrs[attr]) {
+      if (this.attributes[attr] !== newAttrs[attr]) {
         return true;
       }
     }
