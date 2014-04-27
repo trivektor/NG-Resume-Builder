@@ -10,7 +10,6 @@ AngularResumeBuilder::Application.routes.draw do
       end
     end
   end
-  get '/dashboard' => 'dashboard#index'
-  get '*resumes' => 'resumes#index'
+  resources :resumes, only: [:index, :edit]
   root to: 'home#index'
 end
