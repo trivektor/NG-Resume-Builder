@@ -15,7 +15,6 @@ body {
   font-weight: 200;
   padding-top: 80px;
   background: #eee;
-  -webkit-text-stroke: .6px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -208,12 +207,15 @@ textarea {
 .btn {
   border-radius: 0;
   font-weight: 200;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 5px 10px;
   box-shadow: none;
   border: none;
 
   &:hover {
     margin-top: 0;
+  }
+
+  + .btn {
+    margin-left: 5px;
   }
 }

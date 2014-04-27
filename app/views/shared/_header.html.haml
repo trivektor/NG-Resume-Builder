@@ -1,11 +1,11 @@
-.navbar.navbar-default.navbar-fixed-top
+%header.navbar.navbar-default.navbar-fixed-top
   .container
     .navbar-header
       = link_to root_path, class: 'navbar-brand', target: '_self' do
         Resume
         %span.text-success Builder
 
-    .navbar-collapse.collapse
+    %nav.navbar-collapse.collapse
       - if user_signed_in?
         %ul.nav.navbar-nav.navbar-right
           %li.dropdown
