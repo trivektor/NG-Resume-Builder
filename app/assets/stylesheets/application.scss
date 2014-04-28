@@ -10,6 +10,10 @@
 $border-color: #ccc;
 $general-font-size: 16px;
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-size: $general-font-size;
   font-weight: 200;
@@ -29,6 +33,10 @@ input[type=text],
 textarea {
   font-size: inherit;
   font-family: inherit;
+}
+
+main {
+  min-height: 100%;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -252,4 +260,10 @@ textarea {
 
 #resume-name {
   font-size: 2em;
+}
+
+#app-footer {
+  padding: 50px 0;
+  margin-top: 100px;
+  background: #ddd;
 }
