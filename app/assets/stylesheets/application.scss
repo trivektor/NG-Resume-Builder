@@ -97,6 +97,15 @@ textarea {
 
 .block {
   @include block;
+
+  &:only-child,
+  &:last-of-type {
+    margin-bottom: 0
+  }
+}
+
+.block-sm {
+  padding: 8px 12px;
 }
 
 .resume-block {
@@ -239,4 +248,8 @@ textarea {
     pointer-events: none;
     border: none;
   }
+}
+
+#resume-name {
+  font-size: 2em;
 }

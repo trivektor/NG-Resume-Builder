@@ -1,35 +1,32 @@
-%h1.page-header
+.page-header
   .row
     .col-lg-8
       %input#resume-name.editable-field{type: 'text', ng: {model: 'resume.name', blur: 'update()'}}
-    .col-lg-4.text-right
-      %a.btn.btn-info{ng: {href: '{{ resume.live_url }}'}}
-        %i.fa.fa-external-link
-        View Resume
+    .col-lg-4
+      .block.block-sm.pull-right
+        %span{tooltip: 'Add New Section'}
+          %button.btn.btn-success{ng: {click: 'sections.add = !sections.add; sections.sort = false'}}
+            %i.fa.fa-file-text
+        %span{tooltip: 'Reorder Sections'}
+          %button.btn.btn-primary{ng: {click: 'sections.sort = !sections.sort'}}
+            %i.fa.fa-exchange
+        %span{tooltip: 'View Resume'}
+          %a.btn.btn-info{ng: {href: '{{ resume.live_url }}'}}
+            %i.fa.fa-external-link
 
 .row
   %section.col-lg-8
-    .block
-      %button.btn.btn-success{ng: {show: '!sections.add', click: 'sections.add = !sections.add; sections.sort = false'}}
-        %i.fa.fa-file-text
-        Add Section
-      %button.btn.btn-primary{ng: {show: '!sections.add', click: 'sections.sort = !sections.sort'}}
-        %i.fa.fa-refresh
-        %span{ng: {switch: 'sections.sort'}}
-          %span{ng: {switch_when: 'true'}} Finish Ordering
-          %span{ng: {switch_default: ''}} Reorder Sections
+    %form.block{ng: {controller: 'NewSectionController', submit: 'create()', show: 'sections.add'}}
+      .form-group
+        %label.control-label.sr-only Title
+        %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'title'}}
 
-      %form{ng: {controller: 'NewSectionController', submit: 'create()', show: 'sections.add'}}
-        .form-group
-          %label.control-label.sr-only Title
-          %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'title'}}
-
-        .form-group
-          %button.btn.btn-success.btn-sm
-            %i.fa.fa-check
-            Add
-          or
-          %a{ng: {click: 'sections.add = false'}} cancel
+      .form-group
+        %button.btn.btn-success.btn-sm
+          %i.fa.fa-check
+          Add
+        or
+        %a{ng: {click: 'sections.add = false'}} cancel
 
     %section{ng: {if: 'resume.sections.length', model: 'resume.sections'}, ui: {sortable: 'sortableOptions'}}
       %section.block{ng: {class: '{"sortable-active": sections.sort}', repeat: 'section in resume.sections', controller: 'SectionController', init: 'ngInit(resume, section)'}}
