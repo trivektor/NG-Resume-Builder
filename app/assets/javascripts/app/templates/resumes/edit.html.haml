@@ -16,17 +16,18 @@
 
 .row
   %section.col-lg-8
-    %form.block{ng: {controller: 'NewSectionController', submit: 'create()', show: 'sections.add'}}
-      .form-group
-        %label.control-label.sr-only Title
-        %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'title'}}
+    %section.block{ng: {show: 'sections.add'}}
+      %form{ng: {controller: 'NewSectionController', submit: 'create()'}}
+        .form-group
+          %label.control-label.sr-only Title
+          %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'title'}}
 
-      .form-group
-        %button.btn.btn-success.btn-sm
-          %i.fa.fa-check
-          Add
-        or
-        %a{ng: {click: 'sections.add = false'}} cancel
+        .form-group
+          %button.btn.btn-success.btn-sm
+            %i.fa.fa-check
+            Add
+          or
+          %a{ng: {click: 'sections.add = false'}} cancel
 
     %section{ng: {if: 'resume.sections.length', model: 'resume.sections'}, ui: {sortable: 'sortableOptions'}}
       %section.block{ng: {class: '{"sortable-active": sections.sort}', repeat: 'section in resume.sections', controller: 'SectionController', init: 'ngInit(resume, section)'}}
