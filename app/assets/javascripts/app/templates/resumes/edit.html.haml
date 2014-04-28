@@ -1,7 +1,7 @@
 .page-header
   .row
     .col-lg-8
-      %input#resume-name.editable-field{type: 'text', ng: {model: 'resume.name', blur: 'update()'}}
+      %input#resume-name.editable-field.full-width{type: 'text', ng: {model: 'resume.name', blur: 'update()'}}
     .col-lg-4
       .block.block-sm.pull-right
         %span{tooltip: 'Add New Section'}
@@ -30,17 +30,17 @@
           %a{ng: {click: 'sections.add = false'}} cancel
 
     %section{ng: {if: 'resume.sections.length', model: 'resume.sections'}, ui: {sortable: 'sortableOptions'}}
-      %section.block{ng: {class: '{"sortable-active": sections.sort}', repeat: 'section in resume.sections', controller: 'SectionController', init: 'ngInit(resume, section)'}}
+      %section.block{ng: {class: '{"sortable-active": sections.sort}', repeat: 'section in resume.sections', controller: 'SectionController'}}
         .lead
-          %input.editable-field{type: 'text', ng: {model: 'section.title', blur: 'update()'}}
+          %input.editable-field.full-width{type: 'text', ng: {model: 'section.title', blur: 'update()'}}
 
         .well.well-sm.details{ng: {if: 'section.fields.length'}}
-          %section.clearfix{ng: {repeat: 'field in section.fields'}}
-            %b{ng: {if: 'field.name'}} {{ field.name }}
-            {{ field.value }}
-            %i.fa.fa-trash-o.pull-right{ng: {click: 'removeField(field)'}}
+          %section.clearfix{ng: {repeat: 'field in section.fields', controller: 'FieldController'}}
+            %input.editable-field{ng: {model: 'field.name', blur: 'update()'}, placeholder: 'Name'}
+            %input.editable-field{ng: {model: 'field.value', blur: 'update()'}, placeholder: 'Value'}
+            %i.fa.fa-trash-o.pull-right.text-danger.clickable{ng: {click: 'delete()'}, tooltip: 'remove'}
 
-        %form.field-form{ng: {submit: 'createField()', show: 'showFieldForm'}}
+        %form.field-form{ng: {controller: 'NewFieldController', submit: 'create()', show: 'actions.add'}}
           .form-group
             %label.control-label.sr-only Name
             %input.form-control{type: 'text', placeholder: 'Name', ng: {model: 'name'}}
@@ -54,13 +54,13 @@
               %i.fa.fa-check
               Add
             or
-            %a{ng: {click: 'showFieldForm = false'}} cancel
+            %a{ng: {click: 'actions.add = false'}} cancel
 
-        %footer.actions{ng: {hide: 'showFieldForm'}}
-          %button.btn.btn-danger.btn-xs{ng: {click: 'delete(section)'}}
+        %footer.actions{ng: {hide: 'actions.add'}}
+          %button.btn.btn-danger.btn-xs{ng: {click: 'delete()'}}
             %i.fa.fa-trash-o
             Remove Section
-          %button.btn.btn-info.btn-xs{ng: {click: 'showFieldForm = !showFieldForm'}}
+          %button.btn.btn-info.btn-xs{ng: {click: 'actions.add = !actions.add'}}
             %i.fa.fa-plus
             Add Fields
 

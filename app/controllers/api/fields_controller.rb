@@ -10,7 +10,20 @@ class Api::FieldsController < ApplicationController
         if field.save
           render json: field
         else
-          render json: {message: @field.errors.full_messages}
+          render json: {message: field.errors.full_messages}
+        end
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      format.json do
+        field = @section.fields.where(id: params[:id]).first
+        if field.update_attributes(field_params)
+          head :ok
+        else
+          render json: {message: field.errors.full_messages}
         end
       end
     end

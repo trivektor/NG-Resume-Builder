@@ -218,10 +218,17 @@ main {
 
 .editable-field {
   border: none;
-  width: 100%;
   padding: 0;
   background: none;
   border-bottom: 1px dashed #bbb;
+
+  + .editable-field {
+    margin-left: 5px;
+  }
+}
+
+.full-width {
+  width: 100%;
 }
 
 .btn {
