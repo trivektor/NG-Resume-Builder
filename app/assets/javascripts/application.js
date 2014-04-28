@@ -21,3 +21,4 @@
 //= require app/init
 //= require_directory ./app/services
 //= require_directory ./app/controllers
+//= require_directory ./app/routes
