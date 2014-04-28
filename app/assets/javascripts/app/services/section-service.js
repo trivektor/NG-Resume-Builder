@@ -6,21 +6,6 @@ angular.module('app.services').service('Section', function(Restangular) {
     this.attributes = _.extend({}, section);
   }
 
-  Section.prototype.update = function(attrs) {
-    _.extend(this.attributes, attrs);
-    var section = Restangular.one('resumes', this.resume.id).one('sections', this.section.id);
-    _.extend(section, attrs);
-    return section.put();
-  }
-
-  Section.prototype.createField = function(attrs) {
-    return Restangular.one('resumes', this.resume.id).one('sections', this.section.id).all('fields').post(attrs);
-  }
-
-  Section.prototype.removeField = function(field) {
-    return Restangular.one('resumes', this.resume.id).one('sections', this.section.id).one('fields', field.id).remove();
-  }
-
   Section.createInstance = function(resume, section) {
     return new Section(resume, section);
   }
@@ -46,8 +31,8 @@ angular.module('app.services').service('Section', function(Restangular) {
     return false;
   }
 
-  Section.prototype.delete = function(id) {
-    return Restangular.one('resumes', this.resume.id).one('sections', id).remove();
+  Section.prototype.delete = function() {
+    return Restangular.one('resumes', this.resume.id).one('sections', this.section.id).remove();
   }
 
   return Section;
