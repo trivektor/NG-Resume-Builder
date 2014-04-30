@@ -10,6 +10,13 @@ AngularResumeBuilder::Application.routes.draw do
       end
     end
   end
+
   resources :resumes, only: [:index, :edit, :show]
+
+  namespace :linkedin do
+    get '/auth' => 'auth#index'
+    get '/auth/callback' => 'auth#callback'
+  end
+
   root to: 'home#index'
 end

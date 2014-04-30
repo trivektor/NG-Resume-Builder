@@ -1,8 +1,12 @@
 %h1.page-header.clearfix
   %span.pull-left Your Resumes
-  %button.btn.btn-success.pull-right{ng: {click: 'createNew()'}}
-    %i.fa.fa-file
-    New Resume
+  .pull-right
+    %button.btn.btn-success{ng: {click: 'createNew()'}}
+      %i.fa.fa-file
+      New Resume
+    %a.btn.btn-primary{ng: {href: '/linkedin/auth/callback', target: '_self'}}
+      %i.fa.fa-linkedin
+      Import From LinkedIn
 
 %section.row
   .col-lg-4{ng: {repeat: 'resume in resumes', controller: 'ResumeController'}}
