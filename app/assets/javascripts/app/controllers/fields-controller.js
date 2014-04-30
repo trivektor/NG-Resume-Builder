@@ -11,6 +11,8 @@ angular.module('app').classy.controller({
   update: function() {
     var attrs = _.pick(this.$scope.field, 'name', 'value');
 
+    if (!this.field.hasChanged(attrs)) return;
+
     this.field.update(attrs).then(function(response) {
       Messenger().post({
         message: 'Field updated',

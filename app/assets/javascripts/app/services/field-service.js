@@ -22,6 +22,16 @@ angular.module('app.services').service('Field', function(Restangular) {
     return field.put();
   }
 
+  Field.prototype.hasChanged = function(newAttrs) {
+    for (var attr in newAttrs) {
+      if (this.attributes[attr] !== newAttrs[attr]) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   Field.prototype.delete = function() {
     return Restangular.one('resumes', this.resume.id).one('sections', this.section.id).one('fields', this.field.id).remove();
   }
