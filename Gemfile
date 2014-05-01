@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'thin'
 gem 'friendly_id', '~> 5.0.3'
+gem 'rails-footnotes', '>= 4.0.0', '<5'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
