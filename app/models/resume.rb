@@ -3,7 +3,7 @@ class Resume < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   belongs_to :user
-  has_many :sections, dependent: :destroy, order: 'weight asc'
+  has_many :sections, -> { order(weight: :asc) }, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
 
