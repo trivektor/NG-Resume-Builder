@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501061119) do
+ActiveRecord::Schema.define(version: 20140501062415) do
 
   create_table "fields", force: true do |t|
     t.integer  "section_id"
@@ -37,7 +37,10 @@ ActiveRecord::Schema.define(version: 20140501061119) do
     t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ancestry"
   end
+
+  add_index "sections", ["ancestry"], name: "index_sections_on_ancestry", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"

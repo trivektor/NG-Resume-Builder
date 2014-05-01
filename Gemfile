@@ -27,6 +27,7 @@ gem 'haml-rails'
 gem 'quiet_assets'
 gem 'gravatar_image_tag'
 gem 'linkedin'
+gem 'ancestry'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
