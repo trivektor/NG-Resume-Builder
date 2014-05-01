@@ -5,7 +5,7 @@ class Api::ResumesController < ApplicationController
   def index
     respond_to do |format|
       format.json do
-        render json: current_user.resumes
+        render json: current_user.resumes.includes(sections: :fields)
       end
     end
   end

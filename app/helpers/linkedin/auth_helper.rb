@@ -1,0 +1,2 @@
+module Linkedin::AuthHelper
+end

@@ -15,8 +15,10 @@ class Linkedin::AuthController < ApplicationController
       pin = params[:oauth_verifier]
       atoken, asecret = @client.authorize_from_request(session[:rtoken], session[:rsecret], pin)
       session[:atoken] = atoken
-      session[:asecret] = asecret    
+      session[:asecret] = asecret
     end
+
+    create_resume_from_linkedin_profile && return
 
     redirect_to resumes_path
   end
@@ -25,6 +27,12 @@ class Linkedin::AuthController < ApplicationController
 
   def init_client
     @client = LinkedIn::Client.new(ENV['LINKEDIN_API_KEY'], ENV['LINKEDIN_SECRET_KEY'])
+  end
+
+  def create_resume_from_linkedin_profile
+    @client.authorize_from_access(session[:atoken], session[:asecret])
+    Resume.create_from_linkedin_profile(@client, current_user)
+    redirect_to resumes_path
   end
 
 end

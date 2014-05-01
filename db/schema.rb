@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426234447) do
+ActiveRecord::Schema.define(version: 20140501061119) do
 
   create_table "fields", force: true do |t|
     t.integer  "section_id"
     t.string   "name"
-    t.string   "value"
+    t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
