@@ -1,0 +1,18 @@
+.form-group.clearfix
+  %strong.pull-left New Field
+  %b.pull-right{ng: {click: 'actions.add_field = false'}}
+    %i.fa.fa-times
+
+.form-group
+  %label.control-label.sr-only Name
+  %input.form-control{type: 'text', placeholder: 'Name', ng: {model: 'name'}, autofocus: true}
+
+.form-group
+  %label.control-label.sr-only Value
+  %textarea.form-control{placeholder: 'Value', ng: {model: 'value'}}
+
+.form-group
+  %button.btn.btn-success.btn-xs
+    %i.fa.fa-check
+    Add
+  

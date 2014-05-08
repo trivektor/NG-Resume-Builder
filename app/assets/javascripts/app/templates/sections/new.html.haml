@@ -1,0 +1,14 @@
+.form-group.clearfix
+  %strong.pull-left New Section
+  %b.pull-right{ng: {click: 'actions.add_section = false'}}
+    %i.fa.fa-times
+
+.form-group
+  %label.control-label.sr-only Title
+  %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'title'}}
+
+.form-group
+  %button.btn.btn-success.btn-sm
+    %i.fa.fa-check
+    Add
+  

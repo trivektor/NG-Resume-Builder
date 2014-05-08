@@ -5,10 +5,10 @@
     .col-lg-4
       .block.block-sm.pull-right
         %span{tooltip: 'Add New Section'}
-          %button.btn.btn-success{ng: {click: 'sections.add = !sections.add; sections.sort = false'}}
+          %button.btn.btn-success{ng: {click: 'actions.add_section = !actions.add_section; actions.sort_sections = false'}}
             %i.fa.fa-file-text
         %span{tooltip: 'Reorder Sections'}
-          %button.btn.btn-primary{ng: {click: 'sections.sort = !sections.sort'}}
+          %button.btn.btn-primary{ng: {click: 'actions.sort_sections = !actions.sort_sections'}}
             %i.fa.fa-exchange
         %span{tooltip: 'View Resume'}
           %a.btn.btn-info{ng: {href: '{{ resume.live_url }}'}}
@@ -16,21 +16,11 @@
 
 .row
   %section.col-lg-8
-    %section.block{ng: {show: 'sections.add'}}
-      %form{ng: {controller: 'NewSectionController', submit: 'create()'}}
-        .form-group
-          %label.control-label.sr-only Title
-          %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'title'}}
-
-        .form-group
-          %button.btn.btn-success.btn-sm
-            %i.fa.fa-check
-            Add
-          or
-          %a{ng: {click: 'sections.add = false'}} cancel
+    %section.block{ng: {if: 'actions.add_section'}}
+      %form{ng: {controller: 'NewSectionController', submit: 'create()', include: '"/assets/app/templates/sections/new.html"'}}
 
     %section{ng: {if: 'resume.sections.length', model: 'resume.sections'}, ui: {sortable: 'sortableOptions'}}
-      %section.block{ng: {class: '{"sortable-active": sections.sort}', repeat: 'section in resume.sections', controller: 'SectionController'}}
+      %section.block{ng: {class: '{"sortable-active": $parent.actions.sort_sections}', repeat: 'section in resume.sections', controller: 'SectionController'}}
         .lead
           %input.editable-field.full-width{type: 'text', ng: {model: 'section.title', blur: 'update()'}}
 
@@ -40,27 +30,18 @@
             %input.editable-field{ng: {model: 'field.value', blur: 'update()'}, placeholder: 'Value'}
             %i.fa.fa-trash-o.pull-right.text-danger.clickable{ng: {click: 'delete()'}, tooltip: 'remove'}
 
-        %form.field-form{ng: {controller: 'NewFieldController', submit: 'create()', show: 'actions.add'}}
-          .form-group
-            %label.control-label.sr-only Name
-            %input.form-control{type: 'text', placeholder: 'Name', ng: {model: 'name'}}
+        %form.field-form.well.well-sm{ng: {controller: 'NewFieldController', submit: 'create()', include: '"/assets/app/templates/fields/new.html"', if: 'actions.add_field && !actions.add_section'}}
 
-          .form-group
-            %label.control-label.sr-only Value
-            %textarea.form-control{placeholder: 'Value', ng: {model: 'value'}}
+        %form.field-form.well.well-sm{ng: {controller: 'NewSectionController', submit: 'create()', include: '"/assets/app/templates/sections/new.html"', if: 'actions.add_section && !actions.add_field'}}        
 
-          .form-group
-            %button.btn.btn-success.btn-xs
-              %i.fa.fa-check
-              Add
-            or
-            %a{ng: {click: 'actions.add = false'}} cancel
-
-        %footer.actions{ng: {hide: 'actions.add'}}
+        %footer.actions{ng: {if: '!actions.add_section && !actions.add_field'}}
           %button.btn.btn-danger.btn-xs{ng: {click: 'delete()'}}
             %i.fa.fa-trash-o
             Remove Section
-          %button.btn.btn-info.btn-xs{ng: {click: 'actions.add = !actions.add'}}
+          %button.btn.btn-primary.btn-xs{ng: {click: 'actions.add_section = !actions.add_section'}}
+            %i.fa.fa-plus
+            Add Subsection
+          %button.btn.btn-info.btn-xs{ng: {click: 'actions.add_field = !actions.add_field'}}
             %i.fa.fa-plus
             Add Fields
 

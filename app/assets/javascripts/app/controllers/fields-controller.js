@@ -5,6 +5,9 @@ angular.module('app').classy.controller({
 
   init: function() {
     var $scope = this.$scope;
+    $scope.actions = {
+      add_field: false
+    }
     this.field = this.Field.createInstance($scope.resume, $scope.section, $scope.field);
   },
 

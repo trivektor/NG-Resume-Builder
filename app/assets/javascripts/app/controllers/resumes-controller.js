@@ -88,9 +88,9 @@ angular.module('app').classy.controller({
       this.enableSorting().registerEventHandlers();
     }, this));
 
-    this.$scope.sections = {
-      sort: false,
-      add: false
+    this.$scope.actions = {
+      sort_sections: false,
+      add_section: false
     }
   },
 

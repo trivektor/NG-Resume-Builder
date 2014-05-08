@@ -5,6 +5,12 @@ angular.module('app').classy.controller({
 
   init: function() {
     var $scope = this.$scope;
+
+    $scope.actions = {
+      add_field: false,
+      add_section: false,
+    }
+
     this.section = this.Section.createInstance($scope.resume, $scope.section);
     this.setupEventHandlers();
   },
