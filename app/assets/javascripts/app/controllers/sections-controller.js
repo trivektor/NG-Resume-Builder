@@ -9,10 +9,19 @@ angular.module('app').classy.controller({
     $scope.actions = {
       add_field: false,
       add_section: false,
+      sort_sections: false
     }
 
     this.section = this.Section.createInstance($scope.resume, $scope.section);
     this.setupEventHandlers();
+
+    $scope.$on('section:created', function(event, newSection, parentSection) {
+      if (parentSection) {
+        $scope.section.children.push(newSection);
+      } else {
+        $scope.section
+      }
+    });
   },
 
   setupEventHandlers: function() {
@@ -26,6 +35,10 @@ angular.module('app').classy.controller({
       _.remove($scope.section.fields, function(f) {
         return f.id === field.id;
       })
+    });
+
+    $scope.$on('sorting:toggle', function(event) {
+      $scope.actions.sort_sections = !$scope.actions.sort_sections;
     });
   },
 
@@ -66,14 +79,29 @@ angular.module('app').classy.controller({
   create: function() {
     var $scope = this.$scope;
     this.section = this.Section.createInstance($scope.resume);
-    this.section.save({title: $scope.title}).then(function(response) {
-      $scope.$emit('section:created', response);
-      $scope.title = '';
+
+    var params = $scope.section;
+    var parentSection = this.parentSection;
+
+    if (parentSection) {
+      params.parent_id = parentSection.id;
+    }
+
+    this.section.save(params).then(function(response) {
+      $scope.$emit('section:created', response, parentSection);
+      $scope.section.title = '';
 
       Messenger().post({
         message: 'Section added',
         hideAfter: 2
       })
     });
+  },
+
+  prepareForm: function(parentSection) {
+    this.parentSection = parentSection;
+    this.$scope.section = {
+      parent_id: parentSection.id
+    };
   }
 });

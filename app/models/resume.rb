@@ -13,7 +13,7 @@ class Resume < ActiveRecord::Base
     super.merge({
       url: "/resumes/#{slug}/edit",
       live_url: "/resumes/#{slug}",
-      sections: sections.as_json(include: :fields)
+      sections: sections.where(ancestry: nil).as_json(include: :fields)
     })
   end
 

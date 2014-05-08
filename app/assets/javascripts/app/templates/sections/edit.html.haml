@@ -1,0 +1,18 @@
+.main{ng: {include: "'#{asset_path('app/templates/sections/show.html')}'"}}
+
+%section.well.well-sm{ng: {repeat: 'section in section.children', controller: 'SectionController', include: "'#{asset_path('app/templates/sections/show.html')}'"}}
+
+%form.field-form.well.well-sm{ng: {controller: 'NewFieldController', submit: 'create()', include: "'#{asset_path('app/templates/fields/new.html')}'", if: 'actions.add_field && !actions.add_section'}}
+
+%form.field-form.well.well-sm{ng: {controller: 'NewSectionController', submit: 'create()', include: "'#{asset_path('app/templates/sections/new.html')}'", if: 'actions.add_section && !actions.add_field', init: 'prepareForm(section)'}}
+
+%footer.actions{ng: {if: '!actions.add_section && !actions.add_field'}}
+  %button.btn.btn-danger.btn-xs{ng: {click: 'delete()'}}
+    %i.fa.fa-trash-o
+    Remove Section
+  %button.btn.btn-primary.btn-xs{ng: {click: 'actions.add_section = !actions.add_section'}}
+    %i.fa.fa-plus
+    Add Subsection
+  %button.btn.btn-info.btn-xs{ng: {click: 'actions.add_field = !actions.add_field'}}
+    %i.fa.fa-plus
+    Add Fields

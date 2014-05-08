@@ -5,7 +5,11 @@
 
 .form-group
   %label.control-label.sr-only Title
-  %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'title'}}
+  %input.form-control{type: 'text', placeholder: 'Title', required: true, autofocus: true, ng: {model: 'section.title'}}
+
+.form-group
+  %label.control-label.sr-only Description
+  %textarea.form-control{type: 'text', placeholder: 'Description...', ng: {model: 'section.description'}, rows: 3}
 
 .form-group
   %button.btn.btn-success.btn-sm

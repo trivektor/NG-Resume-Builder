@@ -33,6 +33,7 @@ input[type=text],
 textarea {
   font-size: inherit;
   font-family: inherit;
+  resize: none;
 }
 
 main {
@@ -274,4 +275,22 @@ main {
   padding: 50px 0;
   margin-top: 100px;
   background: #ddd;
+}
+
+.subsection {
+  margin-left: 30px;
+}
+
+.resume-section {
+  .main {
+    .editable-field {
+      font-size: 1.3em;
+    }
+  }
+
+  .resume-section-fields {
+    .editable-field {
+      font-size: 1em;
+    }
+  }
 }

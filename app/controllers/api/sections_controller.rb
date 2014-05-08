@@ -5,8 +5,10 @@ class Api::SectionsController < ApplicationController
   def create
     respond_to do |format|
       format.json do
-        section = Section.new(section_params)
+        section = (params[:parent_id] ? Section.children_of(params[:parent_id]) : Section).new(section_params)
+
         section.resume = Resume.find(params[:resume_id])
+
         if section.save
           render json: section
         else

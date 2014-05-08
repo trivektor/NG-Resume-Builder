@@ -1,5 +1,7 @@
 class Section < ActiveRecord::Base
 
+  has_ancestry
+
   belongs_to :resume
   has_many :fields, dependent: :destroy
 
@@ -10,7 +12,10 @@ class Section < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(include: :fields)
+    # TODO: figure out eager loading
+    super.merge({
+      children: children
+    })
   end
 
 end

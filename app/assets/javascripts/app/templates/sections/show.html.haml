@@ -1,0 +1,15 @@
+.form-group
+  %input.editable-field.full-width{type: 'text', ng: {model: 'section.title', blur: 'update()'}}
+.form-group
+  %textarea.form-control{ng: {model: 'section.description', rows: 1}}
+
+.well.well-sm.resume-section-fields{ng: {if: 'section.fields.length'}}
+  %section.clearfix{ng: {repeat: 'field in section.fields', controller: 'FieldController'}}
+    .row
+      .col-lg-5
+        %input.form-control.editable-field{ng: {model: 'field.name', blur: 'update()'}, placeholder: 'Name'}
+      .col-lg-6
+        %input.form-control.editable-field{ng: {model: 'field.value', blur: 'update()'}, placeholder: 'Value'}
+      .col-lg-1
+        %span.btn.btn-danger.clickable.pull-right{ng: {click: 'delete()'}, tooltip: 'remove'}
+          %i.fa.fa-trash-o

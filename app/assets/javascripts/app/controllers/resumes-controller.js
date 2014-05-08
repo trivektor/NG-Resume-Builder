@@ -115,6 +115,14 @@ angular.module('app').classy.controller({
     return this;
   },
 
+  toggleSorting: function() {
+    this.$scope.$broadcast('sorting:toggle');
+  },
+
+  showNewSectionForm: function() {
+    this.$scope.actions.add_section = !this.$scope.actions.add_section;
+  },
+
   registerEventHandlers: function() {
     var $scope = this.$scope;
 
@@ -127,8 +135,9 @@ angular.module('app').classy.controller({
       });
     }, this));
 
-    $scope.$on('section:created', function(event, section) {
-      $scope.resume.sections.push(section);
+    $scope.$on('section:created', function(event, newSection, parentSection) {
+      if (parentSection) return;
+      $scope.resume.sections.push(newSection);
     });
 
     $scope.$on('section:deleted', function(event, section) {
