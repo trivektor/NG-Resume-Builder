@@ -16,6 +16,7 @@
     "angular-ui-sortable": "latest",
     "angular-contenteditable": "latest",
     "angular-animate": "latest",
+    "angular-hotkeys": "latest",
     "restangular": "latest"
   }
 }
