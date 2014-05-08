@@ -4,15 +4,17 @@
     %i.fa.fa-times
 
 .form-group
-  %label.control-label.sr-only Name
-  %input.form-control{type: 'text', placeholder: 'Name', ng: {model: 'name'}, autofocus: true}
+  .row
+    .col-lg-5
+      %label.control-label.sr-only Name
+      %input.form-control{type: 'text', placeholder: 'Name', ng: {model: 'name'}, autofocus: true}
 
-.form-group
-  %label.control-label.sr-only Value
-  %textarea.form-control{placeholder: 'Value', ng: {model: 'value'}}
+    .col-lg-5
+      %label.control-label.sr-only Value
+      %input.form-control{placeholder: 'Value', ng: {model: 'value'}}
 
-.form-group
-  %button.btn.btn-success.btn-xs
-    %i.fa.fa-check
-    Add
+    .col-lg-2
+      %button.btn.btn-success.btn-xs
+        %i.fa.fa-check
+        Add
   
